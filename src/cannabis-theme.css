@@ -129,13 +129,12 @@ body::before {
     background: linear-gradient(135deg, var(--cannabis-bg-medium) 0%, var(--cannabis-bg-dark) 100%);
     padding: 1rem;
     min-width: 250px;
-    border-right: 2px solid var(--cannabis-green);
     position: sticky;
     top: 0;
     height: 100vh;
     overflow-y: auto;
     backdrop-filter: blur(10px);
-    box-shadow: 2px 0 15px rgba(139, 195, 74, 0.2);
+    box-shadow: 4px 0 25px rgba(139, 195, 74, 0.2);
 }
 
 .nav-item {
@@ -1459,14 +1458,13 @@ body::before {
     max-width: 90vw;
     height: 100%;
     background: var(--cannabis-bg-medium);
-    border: 3px solid var(--cannabis-green);
-    border-right: none;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     padding: 2rem;
     overflow-y: auto;
     animation: slideInRight 0.3s ease-out;
     position: relative;
+    box-shadow: -10px 0 30px rgba(139, 195, 74, 0.3);
 }
 
 @keyframes slideInRight {

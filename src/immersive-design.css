@@ -3,14 +3,25 @@
 /* Reset and Enhanced Body */
 body {
     background: linear-gradient(135deg, 
-        #0d1b0d 0%, 
-        #1a2a1a 25%, 
-        #2a3d2a 50%, 
-        #1a2a1a 75%, 
-        #0d1b0d 100%);
+        #1a3d1a 0%, 
+        #2a4d2a 15%,
+        #1a3d1a 30%,
+        #2a4d2a 45%,
+        #3a5d3a 60%,
+        #2a4d2a 75%,
+        #1a3d1a 90%,
+        #2a4d2a 100%);
+    background-size: 400% 400%;
+    animation: backgroundGradientShift 15s ease infinite;
     position: relative;
     overflow-x: hidden;
     min-height: 100vh;
+}
+
+@keyframes backgroundGradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 /* Immersive Background Animations */
@@ -56,9 +67,11 @@ body {
 /* Create additional floating leaves */
 .floating-cannabis-leaves {
     background-image: 
-        radial-gradient(circle at 10% 20%, rgba(139, 195, 74, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 90% 80%, rgba(76, 175, 80, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(255, 193, 7, 0.03) 0%, transparent 30%);
+        radial-gradient(circle at 10% 20%, rgba(139, 195, 74, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(76, 175, 80, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(255, 193, 7, 0.08) 0%, transparent 30%),
+        radial-gradient(circle at 30% 60%, rgba(156, 39, 176, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 70% 30%, rgba(255, 152, 0, 0.06) 0%, transparent 40%);
     animation: backgroundPulse 8s infinite ease-in-out;
 }
 
@@ -879,11 +892,24 @@ body {
 }
 
 .event-venue {
-    background: rgba(42, 61, 42, 0.5);
+    background: linear-gradient(135deg, rgba(42, 61, 42, 0.5) 0%, rgba(45, 64, 45, 0.5) 100%);
     border-radius: 15px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
-    border-left: 4px solid var(--cannabis-green);
+    box-shadow: 0 4px 15px rgba(139, 195, 74, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.event-venue::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--cannabis-green), var(--cannabis-gold), var(--cannabis-green));
+    border-radius: 15px 15px 0 0;
 }
 
 .venue-name {

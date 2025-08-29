@@ -18,7 +18,6 @@
         var(--cannabis-bg-medium) 50%, 
         #2a3d2a 75%, 
         var(--cannabis-bg-dark) 100%);
-    border-left: 3px solid var(--cannabis-green);
     box-shadow: 
         -10px 0 30px rgba(0, 0, 0, 0.7),
         -5px 0 15px rgba(139, 195, 74, 0.3),
