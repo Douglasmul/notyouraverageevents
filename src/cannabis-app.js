@@ -331,17 +331,30 @@ function generateSampleComments(eventTitle) {
     }).join('');
 }
 
-// Event Interaction Functions
+// Enhanced Event Interaction Functions
 function handleEventRSVP(eventTitle) {
     const button = event.target;
     const currentCount = parseInt(button.textContent.match(/\d+/)[0]);
-    button.innerHTML = `✅ Going (${currentCount + 1})`;
+    
+    // Add pulse animation
+    button.style.animation = 'rsvpSuccess 0.6s ease-out';
+    button.innerHTML = `🎉 Joining... (${currentCount + 1})`;
     button.style.background = 'linear-gradient(45deg, var(--cannabis-gold), var(--cannabis-orange))';
+    button.style.transform = 'scale(1.1)';
+    
+    // Add floating success emoji
+    createFloatingEmoji('🎉', button);
     
     setTimeout(() => {
-        button.innerHTML = `🎉 RSVP (${currentCount + 1})`;
-        button.style.background = 'linear-gradient(45deg, var(--cannabis-green), var(--cannabis-dark-green))';
-    }, 2000);
+        button.innerHTML = `✅ Going (${currentCount + 1})`;
+        button.style.transform = 'scale(1)';
+        
+        setTimeout(() => {
+            button.innerHTML = `🎉 RSVP (${currentCount + 1})`;
+            button.style.background = 'linear-gradient(45deg, var(--cannabis-green), var(--cannabis-dark-green))';
+            button.style.animation = '';
+        }, 1500);
+    }, 800);
 }
 
 function handleEventLike(eventTitle) {
@@ -349,12 +362,76 @@ function handleEventLike(eventTitle) {
     const isLiked = button.classList.contains('liked');
     const currentCount = parseInt(button.textContent.match(/\d+/)[0]);
     
-    if (isLiked) {
+    // Add heart animation
+    button.style.animation = 'heartBeat 0.5s ease-out';
+    
+    if (!isLiked) {
+        button.classList.add('liked');
+        button.innerHTML = `💚 Liked (${currentCount + 1})`;
+        button.style.background = 'linear-gradient(45deg, var(--cannabis-gold), var(--cannabis-orange))';
+        
+        // Add floating heart emoji
+        createFloatingEmoji('💚', button);
+        
+        // Create sparkle effect
+        createSparkleEffect(button);
+    } else {
         button.classList.remove('liked');
         button.innerHTML = `🤍 Like (${currentCount - 1})`;
-    } else {
-        button.classList.add('liked');
-        button.innerHTML = `💚 Like (${currentCount + 1})`;
+        button.style.background = 'linear-gradient(45deg, var(--cannabis-purple), #673ab7)';
+    }
+    
+    setTimeout(() => {
+        button.style.animation = '';
+    }, 500);
+}
+
+// Enhanced visual effects
+function createFloatingEmoji(emoji, element) {
+    const floatingEmoji = document.createElement('div');
+    floatingEmoji.textContent = emoji;
+    floatingEmoji.style.cssText = `
+        position: absolute;
+        font-size: 2rem;
+        pointer-events: none;
+        z-index: 1000;
+        animation: floatUp 2s ease-out forwards;
+    `;
+    
+    const rect = element.getBoundingClientRect();
+    floatingEmoji.style.left = (rect.left + rect.width / 2) + 'px';
+    floatingEmoji.style.top = rect.top + 'px';
+    
+    document.body.appendChild(floatingEmoji);
+    
+    setTimeout(() => {
+        document.body.removeChild(floatingEmoji);
+    }, 2000);
+}
+
+function createSparkleEffect(element) {
+    for (let i = 0; i < 5; i++) {
+        setTimeout(() => {
+            const sparkle = document.createElement('div');
+            sparkle.textContent = '✨';
+            sparkle.style.cssText = `
+                position: absolute;
+                font-size: 1rem;
+                pointer-events: none;
+                z-index: 999;
+                animation: sparkle 1s ease-out forwards;
+            `;
+            
+            const rect = element.getBoundingClientRect();
+            sparkle.style.left = (rect.left + Math.random() * rect.width) + 'px';
+            sparkle.style.top = (rect.top + Math.random() * rect.height) + 'px';
+            
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                document.body.removeChild(sparkle);
+            }, 1000);
+        }, i * 100);
     }
 }
 
