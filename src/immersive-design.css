@@ -1,0 +1,1248 @@
+/* 🌿 Immersive Cannabis Event Platform - 50x Better Experience */
+
+/* Reset and Enhanced Body */
+body {
+    background: linear-gradient(135deg, 
+        #0d1b0d 0%, 
+        #1a2a1a 25%, 
+        #2a3d2a 50%, 
+        #1a2a1a 75%, 
+        #0d1b0d 100%);
+    position: relative;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Immersive Background Animations */
+.immersive-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+/* Floating Cannabis Leaves */
+.floating-cannabis-leaves {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.floating-cannabis-leaves::before,
+.floating-cannabis-leaves::after {
+    content: '🌿';
+    position: absolute;
+    font-size: 3rem;
+    opacity: 0.1;
+    animation: floatAcross 15s infinite linear;
+}
+
+.floating-cannabis-leaves::before {
+    top: 20%;
+    left: -10%;
+    animation-delay: 0s;
+}
+
+.floating-cannabis-leaves::after {
+    top: 60%;
+    left: -10%;
+    animation-delay: -7s;
+}
+
+/* Create additional floating leaves */
+.floating-cannabis-leaves {
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(139, 195, 74, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(76, 175, 80, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(255, 193, 7, 0.03) 0%, transparent 30%);
+    animation: backgroundPulse 8s infinite ease-in-out;
+}
+
+/* Celebration Particles */
+.celebration-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.celebration-particles::before {
+    content: '✨ 🎉 ⭐ 💫 🌟';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 2rem;
+    opacity: 0.06;
+    animation: sparkleFloat 20s infinite linear;
+    word-spacing: 5rem;
+    line-height: 8rem;
+}
+
+/* Rotating Event Flyers */
+.rotating-event-flyers {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.rotating-event-flyers::before,
+.rotating-event-flyers::after {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 300px;
+    background: linear-gradient(45deg, 
+        rgba(139, 195, 74, 0.1), 
+        rgba(76, 175, 80, 0.05));
+    border: 2px solid rgba(139, 195, 74, 0.2);
+    border-radius: 15px;
+    opacity: 0.3;
+    animation: rotateFlyers 25s infinite linear;
+}
+
+.rotating-event-flyers::before {
+    top: 10%;
+    right: -100px;
+    animation-delay: 0s;
+}
+
+.rotating-event-flyers::after {
+    bottom: 10%;
+    left: -100px;
+    animation-delay: -12s;
+}
+
+/* Modern Touch-Friendly Navigation */
+.immersive-navigation {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg,
+        rgba(26, 42, 26, 0.95) 0%,
+        rgba(42, 61, 42, 0.95) 50%,
+        rgba(26, 42, 26, 0.95) 100%);
+    backdrop-filter: blur(20px);
+    border-top: 3px solid var(--cannabis-green);
+    box-shadow: 
+        0 -10px 30px rgba(0, 0, 0, 0.5),
+        0 -5px 15px rgba(139, 195, 74, 0.3);
+    z-index: 1000;
+    padding: 1rem 0;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.nav-btn {
+    position: relative;
+    background: linear-gradient(45deg, 
+        rgba(139, 195, 74, 0.2), 
+        rgba(76, 175, 80, 0.1));
+    border: 2px solid rgba(139, 195, 74, 0.3);
+    border-radius: 20px;
+    padding: 1rem 1.5rem;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    min-width: 80px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.nav-btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    border-color: var(--cannabis-green);
+    box-shadow: 
+        0 10px 25px rgba(139, 195, 74, 0.4),
+        0 0 20px rgba(139, 195, 74, 0.6);
+}
+
+.nav-btn.active {
+    background: linear-gradient(45deg, 
+        var(--cannabis-green), 
+        var(--cannabis-dark-green));
+    border-color: var(--cannabis-gold);
+    transform: translateY(-3px);
+    box-shadow: 
+        0 8px 20px rgba(139, 195, 74, 0.6),
+        0 0 15px rgba(139, 195, 74, 0.8);
+}
+
+.nav-btn.active .nav-glow {
+    opacity: 1;
+    animation: navGlow 2s infinite ease-in-out;
+}
+
+.nav-icon {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    animation: iconBounce 2s infinite ease-in-out;
+}
+
+.nav-label {
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.nav-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle, 
+        rgba(139, 195, 74, 0.3) 0%, 
+        transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 18px;
+}
+
+/* Floating Profile Card */
+.floating-profile-card {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    background: linear-gradient(135deg,
+        rgba(26, 42, 26, 0.9) 0%,
+        rgba(42, 61, 42, 0.9) 100%);
+    backdrop-filter: blur(15px);
+    border: 2px solid var(--cannabis-green);
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(139, 195, 74, 0.3);
+    z-index: 100;
+    animation: profileFloat 4s infinite ease-in-out;
+    max-width: 250px;
+}
+
+.profile-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, 
+        var(--cannabis-green), 
+        var(--cannabis-gold));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin: 0 auto 1rem;
+    animation: avatarPulse 3s infinite ease-in-out;
+}
+
+.profile-name {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.profile-level {
+    color: var(--cannabis-gold);
+    text-align: center;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.profile-badges {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.floating-badge {
+    background: linear-gradient(45deg, 
+        var(--cannabis-purple), 
+        var(--cannabis-orange));
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    animation: badgeGlow 3s infinite ease-in-out;
+}
+
+/* Immersive Main Content */
+.immersive-main-content {
+    padding: 2rem 1rem 8rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+.content-wrapper {
+    min-height: 70vh;
+}
+
+/* Hashtag Cloud */
+.hashtag-cloud {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.hashtag-cloud::before {
+    content: '#420Events #CannabisLife #GreenCommunity #WeedLife #420Friendly';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    opacity: 0.05;
+    color: var(--cannabis-green);
+    text-align: center;
+    word-spacing: 2rem;
+    line-height: 3rem;
+    animation: hashtagFloat 30s infinite linear;
+}
+
+/* Celebration Overlay */
+.celebration-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.hashtag-floating {
+    position: absolute;
+    color: var(--cannabis-green);
+    font-weight: bold;
+    font-size: 1.2rem;
+    opacity: 0.4;
+    animation: hashtagBounce 8s infinite ease-in-out;
+}
+
+.hashtag-floating:nth-child(1) {
+    top: 15%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.hashtag-floating:nth-child(2) {
+    top: 35%;
+    right: 15%;
+    animation-delay: -2s;
+}
+
+.hashtag-floating:nth-child(3) {
+    bottom: 25%;
+    left: 20%;
+    animation-delay: -4s;
+}
+
+.celebration-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    color: var(--cannabis-gold);
+    opacity: 0.1;
+    font-weight: bold;
+    text-shadow: 0 0 20px rgba(255, 193, 7, 0.5);
+    animation: celebrationPulse 6s infinite ease-in-out;
+}
+
+/* Animations */
+@keyframes floatAcross {
+    0% { transform: translateX(-100px) translateY(0px) rotate(0deg); }
+    25% { transform: translateX(25vw) translateY(-20px) rotate(90deg); }
+    50% { transform: translateX(50vw) translateY(10px) rotate(180deg); }
+    75% { transform: translateX(75vw) translateY(-15px) rotate(270deg); }
+    100% { transform: translateX(100vw) translateY(0px) rotate(360deg); }
+}
+
+@keyframes sparkleFloat {
+    0% { transform: translateY(0px) rotate(0deg); opacity: 0.06; }
+    50% { transform: translateY(-50px) rotate(180deg); opacity: 0.1; }
+    100% { transform: translateY(0px) rotate(360deg); opacity: 0.06; }
+}
+
+@keyframes rotateFlyers {
+    0% { transform: rotate(0deg) translateX(50px) rotate(0deg); }
+    100% { transform: rotate(360deg) translateX(50px) rotate(-360deg); }
+}
+
+@keyframes backgroundPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+@keyframes navGlow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+}
+
+@keyframes iconBounce {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes profileFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes avatarPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes badgeGlow {
+    0%, 100% { box-shadow: 0 0 5px rgba(156, 39, 176, 0.3); }
+    50% { box-shadow: 0 0 15px rgba(156, 39, 176, 0.8); }
+}
+
+@keyframes hashtagFloat {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes hashtagBounce {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-20px) scale(1.1); }
+}
+
+@keyframes celebrationPulse {
+    0%, 100% { 
+        opacity: 0.1; 
+        transform: translate(-50%, -50%) scale(1); 
+    }
+    50% { 
+        opacity: 0.3; 
+        transform: translate(-50%, -50%) scale(1.2); 
+    }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .floating-profile-card {
+        top: 1rem;
+        right: 1rem;
+        padding: 1rem;
+        max-width: 200px;
+    }
+    
+    .nav-btn {
+        padding: 0.8rem 1rem;
+        min-width: 60px;
+    }
+    
+    .nav-icon {
+        font-size: 1.5rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .nav-label {
+        font-size: 0.7rem;
+    }
+    
+    .celebration-text {
+        font-size: 2rem;
+    }
+    
+    .hashtag-floating {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .floating-profile-card {
+        position: relative;
+        top: auto;
+        right: auto;
+        margin: 1rem;
+        max-width: none;
+    }
+    
+    .nav-container {
+        padding: 0 0.5rem;
+    }
+    
+    .nav-btn {
+        padding: 0.6rem 0.8rem;
+        min-width: 50px;
+    }
+}
+
+/* Immersive Events Feed Styles */
+.immersive-events-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.immersive-title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    animation: titleGlow 3s infinite ease-in-out;
+}
+
+.title-icon, .title-sparkle {
+    font-size: 3rem;
+    animation: iconSpin 4s infinite ease-in-out;
+}
+
+.title-text {
+    background: linear-gradient(45deg, 
+        var(--cannabis-green), 
+        var(--cannabis-gold), 
+        var(--cannabis-green));
+    background-size: 200% 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: gradientShift 3s infinite ease-in-out;
+    font-weight: bold;
+}
+
+.immersive-feed-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.immersive-tab {
+    background: linear-gradient(45deg, 
+        rgba(139, 195, 74, 0.2), 
+        rgba(76, 175, 80, 0.1));
+    border: 2px solid rgba(139, 195, 74, 0.3);
+    border-radius: 25px;
+    padding: 1rem 2rem;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.immersive-tab:hover {
+    transform: translateY(-5px) scale(1.05);
+    border-color: var(--cannabis-green);
+    box-shadow: 
+        0 10px 25px rgba(139, 195, 74, 0.4),
+        0 0 20px rgba(139, 195, 74, 0.6);
+}
+
+.immersive-tab.active {
+    background: linear-gradient(45deg, 
+        var(--cannabis-green), 
+        var(--cannabis-dark-green));
+    border-color: var(--cannabis-gold);
+    transform: translateY(-3px);
+    box-shadow: 
+        0 8px 20px rgba(139, 195, 74, 0.6),
+        0 0 15px rgba(139, 195, 74, 0.8);
+}
+
+.tab-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    animation: tabIconFloat 2s infinite ease-in-out;
+}
+
+.tab-label {
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Community Stats */
+.community-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.stat-card {
+    background: linear-gradient(135deg,
+        rgba(26, 42, 26, 0.8) 0%,
+        rgba(42, 61, 42, 0.8) 100%);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--cannabis-green);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 
+        0 15px 30px rgba(139, 195, 74, 0.4),
+        0 0 25px rgba(139, 195, 74, 0.6);
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(139, 195, 74, 0.2), 
+        transparent);
+    transition: all 0.6s ease;
+}
+
+.stat-card:hover::before {
+    left: 100%;
+}
+
+.stat-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    animation: statIconPulse 3s infinite ease-in-out;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--cannabis-gold);
+    margin-bottom: 0.5rem;
+    animation: numberCount 2s ease-out;
+}
+
+.stat-label {
+    color: #ccc;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Immersive Events Container */
+.immersive-events-container {
+    display: grid;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* Enhanced Animations */
+@keyframes titleGlow {
+    0%, 100% { 
+        text-shadow: 0 0 10px rgba(139, 195, 74, 0.5);
+    }
+    50% { 
+        text-shadow: 0 0 20px rgba(139, 195, 74, 0.8), 
+                     0 0 30px rgba(255, 193, 7, 0.4);
+    }
+}
+
+@keyframes iconSpin {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.2); }
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes tabIconFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes statIconPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes numberCount {
+    0% { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    100% { 
+        opacity: 1; 
+        transform: translateY(0px); 
+    }
+}
+
+/* Mobile Responsive Updates */
+@media (max-width: 768px) {
+    .immersive-title {
+        font-size: 2rem;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .title-icon, .title-sparkle {
+        font-size: 2rem;
+    }
+    
+    .immersive-feed-tabs {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .immersive-tab {
+        padding: 0.8rem 1.5rem;
+        width: 100%;
+        max-width: 200px;
+    }
+    
+    .community-stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .stat-card {
+        padding: 1.5rem;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+}
+
+/* Immersive Event Cards */
+.immersive-event-card {
+    background: linear-gradient(135deg,
+        rgba(26, 42, 26, 0.9) 0%,
+        rgba(42, 61, 42, 0.9) 50%,
+        rgba(26, 42, 26, 0.9) 100%);
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(139, 195, 74, 0.3);
+    border-radius: 25px;
+    padding: 2rem;
+    margin: 1rem 0;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    animation: cardSlideIn 0.6s ease-out both;
+}
+
+.immersive-event-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: var(--cannabis-green);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        0 10px 20px rgba(139, 195, 74, 0.4),
+        0 0 30px rgba(139, 195, 74, 0.2);
+}
+
+.immersive-event-card.cannabis-friendly {
+    border-color: var(--cannabis-green);
+    box-shadow: 0 10px 30px rgba(139, 195, 74, 0.3);
+}
+
+.event-card-background {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(139, 195, 74, 0.1), 
+        transparent);
+    transition: all 0.8s ease;
+}
+
+.immersive-event-card:hover .event-card-background {
+    left: 100%;
+}
+
+.cannabis-indicator {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2.5rem;
+    animation: cannabisFloat 3s infinite ease-in-out;
+    opacity: 0.7;
+    filter: drop-shadow(0 0 10px rgba(139, 195, 74, 0.6));
+}
+
+.event-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.event-info {
+    flex: 1;
+}
+
+.event-title {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0 0 1rem 0;
+    animation: titleShimmer 3s infinite ease-in-out;
+}
+
+.event-title.cannabis-title {
+    color: var(--cannabis-green);
+    text-shadow: 0 0 10px rgba(139, 195, 74, 0.5);
+}
+
+.event-badges {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.category-badge {
+    background: linear-gradient(45deg, var(--cannabis-purple), #673ab7);
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    animation: badgePulse 2s infinite ease-in-out;
+}
+
+.cannabis-badge {
+    background: linear-gradient(45deg, var(--cannabis-green), var(--cannabis-dark-green));
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    animation: cannabisBadgeGlow 2s infinite ease-in-out;
+    box-shadow: 0 0 15px rgba(139, 195, 74, 0.4);
+}
+
+.event-date {
+    color: #ccc;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.event-poster-badge {
+    background: linear-gradient(45deg, var(--cannabis-green), var(--cannabis-gold));
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    animation: posterBadgeSpin 4s infinite ease-in-out;
+    box-shadow: 0 5px 15px rgba(139, 195, 74, 0.4);
+}
+
+.event-description {
+    color: #ddd;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+.event-venue {
+    background: rgba(42, 61, 42, 0.5);
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid var(--cannabis-green);
+}
+
+.venue-name {
+    color: var(--cannabis-green);
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.venue-address {
+    color: #ccc;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.venue-amenities {
+    color: var(--cannabis-gold);
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+.event-actions {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    position: relative;
+    background: linear-gradient(45deg, 
+        rgba(139, 195, 74, 0.8), 
+        rgba(76, 175, 80, 0.8));
+    border: 2px solid var(--cannabis-green);
+    border-radius: 25px;
+    padding: 1rem 1.5rem;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: bold;
+    overflow: hidden;
+    flex: 1;
+    min-width: 120px;
+    justify-content: center;
+}
+
+.action-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 
+        0 10px 25px rgba(139, 195, 74, 0.4),
+        0 0 20px rgba(139, 195, 74, 0.6);
+}
+
+.like-btn {
+    background: linear-gradient(45deg, 
+        rgba(156, 39, 176, 0.8), 
+        rgba(103, 58, 183, 0.8));
+    border-color: var(--cannabis-purple);
+}
+
+.like-btn:hover {
+    box-shadow: 
+        0 10px 25px rgba(156, 39, 176, 0.4),
+        0 0 20px rgba(156, 39, 176, 0.6);
+}
+
+.comment-btn {
+    background: linear-gradient(45deg, 
+        rgba(255, 152, 0, 0.8), 
+        rgba(255, 193, 7, 0.8));
+    border-color: var(--cannabis-orange);
+}
+
+.comment-btn:hover {
+    box-shadow: 
+        0 10px 25px rgba(255, 152, 0, 0.4),
+        0 0 20px rgba(255, 152, 0, 0.6);
+}
+
+.btn-icon {
+    font-size: 1.2rem;
+    animation: iconFloat 2s infinite ease-in-out;
+}
+
+.btn-text {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle, 
+        rgba(255, 255, 255, 0.2) 0%, 
+        transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 23px;
+}
+
+.action-btn:hover .btn-glow {
+    opacity: 1;
+}
+
+.swipe-hint {
+    text-align: center;
+    margin-top: 1rem;
+    padding: 0.8rem;
+    background: rgba(139, 195, 74, 0.1);
+    border-radius: 15px;
+    border: 1px solid rgba(139, 195, 74, 0.2);
+}
+
+.hint-text {
+    color: var(--cannabis-green);
+    font-size: 0.8rem;
+    font-style: italic;
+    animation: hintPulse 3s infinite ease-in-out;
+}
+
+.card-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.card-particles::before {
+    content: '✨';
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    font-size: 1.5rem;
+    opacity: 0.3;
+    animation: particleFloat 4s infinite ease-in-out;
+}
+
+.card-particles::after {
+    content: '🌟';
+    position: absolute;
+    bottom: 15%;
+    left: 15%;
+    font-size: 1.2rem;
+    opacity: 0.2;
+    animation: particleFloat 5s infinite ease-in-out reverse;
+}
+
+/* Enhanced Animations for Event Cards */
+@keyframes cardSlideIn {
+    0% { 
+        opacity: 0; 
+        transform: translateY(50px) scale(0.9); 
+    }
+    100% { 
+        opacity: 1; 
+        transform: translateY(0) scale(1); 
+    }
+}
+
+@keyframes cannabisFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(10deg); }
+}
+
+@keyframes titleShimmer {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; text-shadow: 0 0 20px rgba(139, 195, 74, 0.8); }
+}
+
+@keyframes badgePulse {
+    0%, 100% { box-shadow: 0 0 5px rgba(156, 39, 176, 0.3); }
+    50% { box-shadow: 0 0 15px rgba(156, 39, 176, 0.6); }
+}
+
+@keyframes cannabisBadgeGlow {
+    0%, 100% { box-shadow: 0 0 15px rgba(139, 195, 74, 0.4); }
+    50% { box-shadow: 0 0 25px rgba(139, 195, 74, 0.8); }
+}
+
+@keyframes posterBadgeSpin {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.1); }
+}
+
+@keyframes iconFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-3px); }
+}
+
+@keyframes hintPulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
+@keyframes particleFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+    50% { transform: translateY(-20px) rotate(180deg); opacity: 0.6; }
+}
+
+/* Mobile Responsive Event Cards */
+@media (max-width: 768px) {
+    .immersive-event-card {
+        padding: 1.5rem;
+        margin: 0.8rem 0;
+    }
+    
+    .event-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .event-title {
+        font-size: 1.3rem;
+    }
+    
+    .event-actions {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .action-btn {
+        width: 100%;
+        padding: 0.8rem 1rem;
+    }
+    
+    .cannabis-indicator {
+        font-size: 2rem;
+        top: 0.5rem;
+        right: 0.5rem;
+    }
+    
+    .event-poster-badge {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+}
+
+/* Empty State Styling */
+.no-events-immersive {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg,
+        rgba(26, 42, 26, 0.6) 0%,
+        rgba(42, 61, 42, 0.6) 100%);
+    border-radius: 25px;
+    border: 2px dashed rgba(139, 195, 74, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.empty-icon {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    animation: emptyIconFloat 3s infinite ease-in-out;
+}
+
+.no-events-immersive h3 {
+    color: var(--cannabis-green);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.no-events-immersive p {
+    color: #ccc;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.floating-leaves {
+    font-size: 2rem;
+    opacity: 0.3;
+    animation: leavesFloat 6s infinite ease-in-out;
+}
+
+/* Additional Animation Keyframes */
+@keyframes emptyIconFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(10deg); }
+}
+
+@keyframes leavesFloat {
+    0%, 100% { transform: translateX(0px); opacity: 0.3; }
+    25% { transform: translateX(10px); opacity: 0.5; }
+    50% { transform: translateX(-5px); opacity: 0.7; }
+    75% { transform: translateX(15px); opacity: 0.4; }
+}
+
+@keyframes floatUp {
+    0% { 
+        opacity: 1; 
+        transform: translateY(0px) scale(1); 
+    }
+    100% { 
+        opacity: 0; 
+        transform: translateY(-100px) scale(1.2); 
+    }
+}
+
+@keyframes sparkle {
+    0% { 
+        opacity: 1; 
+        transform: scale(0) rotate(0deg); 
+    }
+    50% { 
+        opacity: 0.8; 
+        transform: scale(1.5) rotate(180deg); 
+    }
+    100% { 
+        opacity: 0; 
+        transform: scale(0) rotate(360deg); 
+    }
+}
+
+@keyframes slideIn {
+    0% { 
+        opacity: 0; 
+        transform: translateY(30px); 
+    }
+    100% { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+/* Notification Styling */
+.immersive-notification {
+    font-family: inherit;
+    font-weight: bold;
+    border: 2px solid var(--cannabis-green);
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.notification-content {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.notification-icon {
+    font-size: 1.5rem;
+    animation: notificationIconSpin 2s ease-out;
+}
+
+@keyframes notificationIconSpin {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.2); }
+    100% { transform: rotate(360deg) scale(1); }
+}
