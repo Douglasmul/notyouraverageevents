@@ -104,26 +104,30 @@ h1 {
 
 /* Event Cards */
 .event { 
-    background: #2a2a2a; 
-    border-left: 4px solid #4caf50; 
+    background: linear-gradient(135deg, #2a2a2a 0%, #2d2d2d 100%); 
     margin: 1em 0; 
     padding: 1em; 
-    border-radius: 5px; 
+    border-radius: 15px; 
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 } 
 
 .event:hover {
-    background: #333;
+    background: linear-gradient(135deg, #333 0%, #363636 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
 }
 
 .event.cannabis-friendly {
-    border-left-color: #8bc34a;
-    background: #2a3d2a;
+    background: linear-gradient(135deg, #2a3d2a 0%, #2d402d 100%);
+    box-shadow: 0 4px 15px rgba(139, 195, 74, 0.3);
 }
 
 .event.cannabis-friendly:hover {
-    background: #3a4d3a;
+    background: linear-gradient(135deg, #3a4d3a 0%, #3d503d 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(139, 195, 74, 0.5);
 }
 
 .event-header {
@@ -347,25 +351,29 @@ h1 {
 }
 
 .venue-card {
-    background: #2a2a2a;
-    border-left: 4px solid #4caf50;
+    background: linear-gradient(135deg, #2a2a2a 0%, #2d2d2d 100%);
     margin: 1em 0;
     padding: 1.5em;
-    border-radius: 5px;
-    transition: background 0.3s ease;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .venue-card.cannabis-friendly {
-    border-left-color: #8bc34a;
-    background: #2a3d2a;
+    background: linear-gradient(135deg, #2a3d2a 0%, #2d402d 100%);
+    box-shadow: 0 4px 15px rgba(139, 195, 74, 0.3);
 }
 
 .venue-card:hover {
-    background: #333;
+    background: linear-gradient(135deg, #333 0%, #363636 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
 }
 
 .venue-card.cannabis-friendly:hover {
-    background: #3a4d3a;
+    background: linear-gradient(135deg, #3a4d3a 0%, #3d503d 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(139, 195, 74, 0.5);
 }
 
 .venue-header h3 {
@@ -484,11 +492,24 @@ h1 {
 }
 
 .cannabis-info {
-    background: #2a3d2a;
+    background: linear-gradient(135deg, #2a3d2a 0%, #2d402d 100%);
     padding: 1em;
-    border-radius: 5px;
-    border-left: 4px solid #8bc34a;
+    border-radius: 15px;
     margin: 1em 0;
+    box-shadow: 0 4px 15px rgba(139, 195, 74, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.cannabis-info::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--cannabis-green), var(--cannabis-gold), var(--cannabis-green));
+    border-radius: 15px 15px 0 0;
 }
 
 .cannabis-info p {
