@@ -1,1 +1,34 @@
-[ { "title": "Community Meetup", "date": "2025-09-15", "description": "Join us for a friendly gathering and some fun activities." }, { "title": "Workshop: Build Your Website", "date": "2025-09-20", "description": "A hands-on workshop for beginners in web development." } ]
+[
+  {
+    "title": "Community Meetup",
+    "date": "2025-09-15",
+    "description": "Join us for a friendly gathering and some fun activities.",
+    "category": "Meetup",
+    "location": "Community Center",
+    "time": "7:00 PM"
+  },
+  {
+    "title": "Workshop: Build Your Website",
+    "date": "2025-09-20",
+    "description": "A hands-on workshop for beginners in web development.",
+    "category": "Workshop",
+    "location": "Tech Hub",
+    "time": "2:00 PM"
+  },
+  {
+    "title": "Tech Conference 2025",
+    "date": "2025-10-05",
+    "description": "Annual technology conference featuring industry leaders and cutting-edge innovations.",
+    "category": "Conference",
+    "location": "Convention Center",
+    "time": "9:00 AM"
+  },
+  {
+    "title": "Networking Night",
+    "date": "2025-09-25",
+    "description": "Connect with professionals in your field over drinks and appetizers.",
+    "category": "Meetup",
+    "location": "Downtown Rooftop",
+    "time": "6:30 PM"
+  }
+]
