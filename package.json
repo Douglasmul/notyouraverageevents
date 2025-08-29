@@ -1,0 +1,38 @@
+{
+  "name": "notyouraverageevents",
+  "version": "1.0.0",
+  "description": "A static website and calendar for events",
+  "main": "index.html",
+  "scripts": {
+    "start": "live-server --port=3000 --host=0.0.0.0 --open=/",
+    "dev": "live-server --port=3000 --host=0.0.0.0 --open=/",
+    "serve": "http-server -p 3000 -a 0.0.0.0 -o",
+    "serve-basic": "http-server -p 8080 -a 0.0.0.0",
+    "build": "echo 'Static site - no build step required'",
+    "test": "echo 'No tests specified'",
+    "clean": "rm -rf node_modules package-lock.json",
+    "reinstall": "npm run clean && npm install"
+  },
+  "keywords": [
+    "events",
+    "calendar",
+    "static-site",
+    "html",
+    "javascript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "http-server": "^14.1.1"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Douglasmul/notyouraverageevents.git"
+  },
+  "homepage": "."
+}
