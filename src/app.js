@@ -191,6 +191,9 @@ function showEventDetails(event) {
     
     modal.querySelector('.modal-content').innerHTML = `
         <span class="close">&times;</span>
+        <div class="featured-image-container">
+            <img src="assets/event-flyer.svg" alt="Event Flyer" class="featured-image" onerror="this.style.display='none'">
+        </div>
         <h2>${event.title}</h2>
         <div class="event-details">
             <div class="detail-row">
@@ -270,6 +273,9 @@ function showLatestEventModal() {
     
     modal.querySelector('.modal-content').innerHTML = `
         <span class="close">&times;</span>
+        <div class="featured-image-container">
+            <img src="assets/event-flyer.svg" alt="Latest Event Flyer" class="featured-image" onerror="this.style.display='none'">
+        </div>
         <h2>🎉 Latest Event</h2>
         <h3>${latestEvent.title}</h3>
         <div class="event-details">
