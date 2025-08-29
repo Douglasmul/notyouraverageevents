@@ -442,6 +442,22 @@ h1 {
     text-decoration: none;
 }
 
+/* Featured Image */
+.featured-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 1.5em;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    display: block;
+}
+
+.featured-image-container {
+    text-align: center;
+    margin-bottom: 1.5em;
+}
+
 .event-details {
     margin-top: 1em;
 }
@@ -526,5 +542,11 @@ h1 {
     .modal-content {
         margin: 10% auto;
         width: 95%;
+        padding: 1em;
+    }
+    
+    .featured-image {
+        border-radius: 6px;
+        margin-bottom: 1em;
     }
 }
