@@ -322,9 +322,28 @@ function createSparkleEffect(element) {
 function showImmersiveNotification(message, type = 'success') {
     const notification = document.createElement('div');
     notification.className = `immersive-notification ${type}`;
+    
+    // Different icons and colors for different types
+    let icon, bgGradient;
+    switch (type) {
+        case 'trending':
+            icon = '🔥';
+            bgGradient = 'linear-gradient(45deg, var(--cannabis-orange), var(--cannabis-gold))';
+            break;
+        case 'info':
+            icon = '💡';
+            bgGradient = 'linear-gradient(45deg, var(--cannabis-purple), #673ab7)';
+            break;
+        case 'success':
+        default:
+            icon = '🌿';
+            bgGradient = 'linear-gradient(45deg, var(--cannabis-green), var(--cannabis-dark-green))';
+            break;
+    }
+    
     notification.innerHTML = `
         <div class="notification-content">
-            <div class="notification-icon">🌿</div>
+            <div class="notification-icon">${icon}</div>
             <div class="notification-message">${message}</div>
         </div>
     `;
@@ -334,15 +353,18 @@ function showImmersiveNotification(message, type = 'success') {
         top: -100px;
         left: 50%;
         transform: translateX(-50%);
-        background: linear-gradient(45deg, var(--cannabis-green), var(--cannabis-dark-green));
+        background: ${bgGradient};
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 255, 255, 0.2);
         color: white;
         padding: 1rem 2rem;
         border-radius: 25px;
-        box-shadow: 0 10px 30px rgba(139, 195, 74, 0.6);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(139, 195, 74, 0.4);
         z-index: 2000;
         animation: notificationSlide 3s ease-out forwards;
         max-width: 90vw;
         text-align: center;
+        font-weight: bold;
     `;
     
     document.body.appendChild(notification);
@@ -394,6 +416,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeImmersiveTabs();
     initializeMascot();
     initializeInteractiveHashtags();
+    initializeDynamicGreeting();
     
     // Add dynamic background elements
     createDynamicLeaves();
@@ -401,6 +424,67 @@ document.addEventListener('DOMContentLoaded', () => {
     
     console.log('🌿 Immersive Cannabis Events Platform Initialized!');
 });
+
+// Dynamic Greeting System
+function initializeDynamicGreeting() {
+    const greetingElement = document.getElementById('greeting-text');
+    const subtitleElement = document.getElementById('greeting-subtitle');
+    const greetingBanner = document.getElementById('dynamic-greeting');
+    
+    if (!greetingElement || !subtitleElement) return;
+    
+    const hour = new Date().getHours();
+    const userName = "Sarah"; // This would come from user data
+    
+    let greeting, subtitle;
+    
+    if (hour >= 4 && hour < 12) {
+        greeting = `Good morning, ${userName}! ☀️🌿`;
+        subtitle = "Rise and shine with some green vibes!";
+    } else if (hour >= 12 && hour < 17) {
+        greeting = `Good afternoon, ${userName}! 🌤️🌿`;
+        subtitle = "Perfect time for a cannabis break!";
+    } else if (hour >= 17 && hour < 21) {
+        greeting = `Good evening, ${userName}! 🌅🌿`;
+        subtitle = "Ready for some cannabis-friendly fun?";
+    } else {
+        greeting = `Good night, ${userName}! 🌙🌿`;
+        subtitle = "Late night session? We've got events!";
+    }
+    
+    // Special 4:20 greeting
+    const minutes = new Date().getMinutes();
+    if ((hour === 4 || hour === 16) && minutes === 20) {
+        greeting = `It's 4:20, ${userName}! 🌿✨`;
+        subtitle = "Perfect timing for the cannabis community!";
+    }
+    
+    greetingElement.textContent = greeting;
+    subtitleElement.textContent = subtitle;
+    
+    // Auto-hide greeting after 5 seconds
+    setTimeout(() => {
+        greetingBanner.style.animation = 'greetingSlideOut 0.8s ease-in forwards';
+    }, 5000);
+    
+    // Show trending events notification
+    setTimeout(() => {
+        showTrendingEventsNotification();
+    }, 7000);
+}
+
+// Trending Events Notification
+function showTrendingEventsNotification() {
+    const trendingEvents = [
+        "🔥 Cannabis Art Gallery is trending!",
+        "🌟 420 Meditation Session gaining popularity!",
+        "💚 Green Community Meetup is hot right now!",
+        "✨ Cannabis Cooking Class is getting buzz!"
+    ];
+    
+    const randomEvent = trendingEvents[Math.floor(Math.random() * trendingEvents.length)];
+    showImmersiveNotification(randomEvent, 'trending');
+}
 
 // Cannabis Mascot Interactions
 function initializeMascot() {

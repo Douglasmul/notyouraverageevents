@@ -658,6 +658,20 @@ body {
     .hashtag-floating {
         font-size: 0.9rem;
     }
+    
+    .dynamic-greeting {
+        top: 80px;
+        padding: 1rem 1.5rem;
+        max-width: 90%;
+    }
+    
+    .greeting-text {
+        font-size: 1.4rem;
+    }
+    
+    .greeting-subtitle {
+        font-size: 0.9rem;
+    }
 }
 
 /* Immersive Events Feed Styles */
@@ -1748,4 +1762,85 @@ body {
     transform: scale(1.2);
     text-shadow: 0 0 15px var(--cannabis-green);
     opacity: 0.8 !important;
+}
+
+/* Dynamic Greeting Banner */
+.dynamic-greeting {
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg,
+        rgba(10, 26, 10, 0.9) 0%,
+        rgba(26, 42, 26, 0.95) 50%,
+        rgba(10, 26, 10, 0.9) 100%);
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(139, 195, 74, 0.4);
+    border-radius: 25px;
+    padding: 1.5rem 2.5rem;
+    text-align: center;
+    z-index: 999;
+    animation: greetingSlideIn 1s ease-out;
+    box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.4),
+        0 5px 15px rgba(139, 195, 74, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.greeting-text {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--cannabis-green);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 15px rgba(139, 195, 74, 0.5);
+    animation: textGlow 3s infinite ease-in-out;
+}
+
+.greeting-subtitle {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    animation: subtitleFloat 4s infinite ease-in-out;
+}
+
+@keyframes greetingSlideIn {
+    0% { 
+        transform: translateX(-50%) translateY(-50px); 
+        opacity: 0; 
+    }
+    100% { 
+        transform: translateX(-50%) translateY(0); 
+        opacity: 1; 
+    }
+}
+
+@keyframes textGlow {
+    0%, 100% { 
+        text-shadow: 0 0 15px rgba(139, 195, 74, 0.5); 
+    }
+    50% { 
+        text-shadow: 0 0 25px rgba(139, 195, 74, 0.8); 
+    }
+}
+
+@keyframes subtitleFloat {
+    0%, 100% { 
+        transform: translateY(0); 
+        opacity: 0.9; 
+    }
+    50% { 
+        transform: translateY(-3px); 
+        opacity: 1; 
+    }
+}
+
+@keyframes greetingSlideOut {
+    0% { 
+        transform: translateX(-50%) translateY(0); 
+        opacity: 1; 
+    }
+    100% { 
+        transform: translateX(-50%) translateY(-50px); 
+        opacity: 0; 
+    }
 }
