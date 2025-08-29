@@ -47,6 +47,9 @@ document.addEventListener('DOMContentLoaded', function() {
     loadData();
     startCountdown();
     setupSwipeListeners();
+    
+    // Initialize immersive events but don't load yet
+    initializeImmersiveEvents();
 });
 
 // Load all data
@@ -65,6 +68,9 @@ async function loadData() {
         displayEvents(allEvents);
         updateNextEventInfo();
         loadCommunityContent();
+        
+        // Load immersive events
+        loadImmersiveEvents();
         
         // Show welcome notification instead of modal
         setTimeout(() => {
@@ -230,10 +236,24 @@ function filterEvents(type) {
 }
 
 function displayEvents(events) {
-    const eventsList = document.getElementById('events-list');
+    // Try to use the new immersive container first
+    const immersiveContainer = document.getElementById('immersive-events-list');
+    const legacyContainer = document.getElementById('events-list');
+    
+    if (immersiveContainer) {
+        // Use new immersive system
+        loadImmersiveEventsWithData(events);
+        return;
+    }
+    
+    // Fallback to legacy system if container exists
+    if (!legacyContainer) {
+        console.log('No events container found');
+        return;
+    }
     
     if (events.length === 0) {
-        eventsList.innerHTML = `
+        legacyContainer.innerHTML = `
             <div class="no-events">
                 <div style="font-size: 4rem; margin-bottom: 1rem;">🌿</div>
                 <h3>No events found</h3>
@@ -243,7 +263,7 @@ function displayEvents(events) {
         return;
     }
     
-    eventsList.innerHTML = events.map((event, index) => createEventCard(event, index)).join('');
+    legacyContainer.innerHTML = events.map((event, index) => createEventCard(event, index)).join('');
 }
 
 function createEventCard(event, index) {
@@ -819,4 +839,128 @@ function setupSwipeListeners() {
             }
         }
     });
+}
+
+// Immersive Events System Integration
+function initializeImmersiveEvents() {
+    // This function is called from immersive-interactions.js
+    console.log('Immersive events system ready to load events');
+}
+
+function loadImmersiveEvents() {
+    const container = document.getElementById('immersive-events-list');
+    if (!container || !allEvents.length) {
+        console.log('Container not found or no events loaded yet');
+        return;
+    }
+    
+    loadImmersiveEventsWithData(allEvents);
+}
+
+function loadImmersiveEventsWithData(events) {
+    const container = document.getElementById('immersive-events-list');
+    if (!container) {
+        console.log('Immersive events container not found');
+        return;
+    }
+    
+    // Clear existing content
+    container.innerHTML = '';
+    
+    // Get current filter
+    const activeTab = document.querySelector('.immersive-tab.active');
+    const filter = activeTab ? activeTab.dataset.filter : 'upcoming';
+    
+    // Filter events based on current selection
+    const now = new Date();
+    let filteredEvents;
+    
+    switch (filter) {
+        case 'upcoming':
+            filteredEvents = events.filter(event => new Date(event.date) >= now);
+            break;
+        case 'trending':
+            filteredEvents = events.filter(event => event.cannabisFriendly || Math.random() > 0.5);
+            break;
+        case 'past':
+            filteredEvents = events.filter(event => new Date(event.date) < now);
+            break;
+        default:
+            filteredEvents = events;
+    }
+    
+    // Create immersive event cards
+    filteredEvents.forEach((event, index) => {
+        // Enhance event data with random stats for demo
+        const enhancedEvent = {
+            ...event,
+            rsvpCount: event.rsvpCount || Math.floor(Math.random() * 30) + 10,
+            likeCount: event.likes || Math.floor(Math.random() * 20) + 5,
+            commentCount: event.comments || Math.floor(Math.random() * 15) + 2,
+            cannabisFriendly: event.cannabisFriendly || event.title.toLowerCase().includes('cannabis') || Math.random() > 0.7
+        };
+        
+        // Create immersive event card using the new system
+        const card = createImmersiveEventCard(enhancedEvent, index);
+        container.appendChild(card);
+    });
+    
+    // If no events, show empty state
+    if (filteredEvents.length === 0) {
+        container.innerHTML = `
+            <div class="no-events-immersive">
+                <div class="empty-icon">🌿</div>
+                <h3>No events found</h3>
+                <p>Check back later for more cannabis-friendly events!</p>
+                <div class="floating-leaves">🍃 🌿 🍃</div>
+            </div>
+        `;
+    }
+}
+
+// Integration with existing event handlers
+function handleImmersiveEventClick(eventTitle) {
+    const event = allEvents.find(e => e.title === eventTitle);
+    if (event && window.immersiveOverlay) {
+        window.immersiveOverlay.showEventPanel(event);
+    }
+}
+
+// Override existing functions to work with immersive system
+const originalFilterEvents = typeof filterEvents !== 'undefined' ? filterEvents : function() {};
+
+function filterEvents(type) {
+    currentFeedFilter = type;
+    
+    // Update tab appearance
+    document.querySelectorAll('.feed-tab').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    if (event && event.target) {
+        event.target.classList.add('active');
+    }
+    
+    const now = new Date();
+    let filteredEvents;
+    
+    switch (type) {
+        case 'upcoming':
+            filteredEvents = allEvents.filter(event => new Date(event.date) >= now);
+            break;
+        case 'trending':
+            filteredEvents = allEvents.filter(event => event.cannabisFriendly || Math.random() > 0.5);
+            break;
+        case 'past':
+            filteredEvents = allEvents.filter(event => new Date(event.date) < now);
+            break;
+        default:
+            filteredEvents = allEvents;
+    }
+    
+    displayEvents(filteredEvents);
+    
+    // Also update immersive events
+    setTimeout(() => {
+        loadImmersiveEventsWithData(filteredEvents);
+    }, 100);
 }

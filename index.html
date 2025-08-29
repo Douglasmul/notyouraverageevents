@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="src/styles.css">
     <link rel="stylesheet" href="src/cannabis-theme.css">
     <link rel="stylesheet" href="src/immersive-overlays.css">
+    <link rel="stylesheet" href="src/immersive-design.css">
 </head>
 <body>
     <!-- App Root -->
@@ -111,79 +112,102 @@
                 </div>
             </div>
 
-            <!-- Main Content -->
-            <main class="main-content">
-                <!-- Navigation -->
-                <nav class="main-nav">
-                    <div class="profile-quick-view">
-                        <div class="user-avatar">🌿</div>
-                        <div class="user-info">
-                            <div class="user-name">Sarah Green</div>
-                            <div class="user-status">Gold Leaf • 420 points</div>
-                            <div class="user-badges">
-                                <span class="badge">Event Host</span>
-                                <span class="badge">Community Leader</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <button class="nav-item active" onclick="showView('events')">
-                        🎉 Events Feed
-                    </button>
-                    <button class="nav-item" onclick="showView('community')">
-                        💬 Community Board
-                    </button>
-                    <button class="nav-item" onclick="showProfile()">
-                        👤 My Profile
-                    </button>
-                    <button class="nav-item" onclick="showView('add-event')">
-                        ➕ Create Event
-                    </button>
-                </nav>
+            <!-- Immersive Background Animations -->
+            <div class="immersive-background">
+                <div class="floating-cannabis-leaves"></div>
+                <div class="celebration-particles"></div>
+                <div class="rotating-event-flyers"></div>
+                <div class="hashtag-cloud"></div>
+            </div>
 
-                <!-- Content Area -->
-                <div class="content-area">
+            <!-- Modern Touch-Friendly Navigation -->
+            <nav class="immersive-navigation">
+                <div class="nav-container">
+                    <button class="nav-btn active" data-view="events">
+                        <div class="nav-icon">🎉</div>
+                        <div class="nav-label">Events</div>
+                        <div class="nav-glow"></div>
+                    </button>
+                    <button class="nav-btn" data-view="community">
+                        <div class="nav-icon">💬</div>
+                        <div class="nav-label">Community</div>
+                        <div class="nav-glow"></div>
+                    </button>
+                    <button class="nav-btn" data-view="profile">
+                        <div class="nav-icon">👤</div>
+                        <div class="nav-label">Profile</div>
+                        <div class="nav-glow"></div>
+                    </button>
+                    <button class="nav-btn" data-view="create">
+                        <div class="nav-icon">➕</div>
+                        <div class="nav-label">Create</div>
+                        <div class="nav-glow"></div>
+                    </button>
+                </div>
+            </nav>
+
+            <!-- User Profile Card (Floating) -->
+            <div class="floating-profile-card">
+                <div class="profile-avatar">🌿</div>
+                <div class="profile-info">
+                    <div class="profile-name">Sarah Green</div>
+                    <div class="profile-level">Gold Leaf • 420 points</div>
+                </div>
+                <div class="profile-badges">
+                    <span class="floating-badge">Event Host</span>
+                    <span class="floating-badge">Community Leader</span>
+                </div>
+            </div>
+
+            <!-- Main Content Area -->
+            <main class="immersive-main-content">
+                <div class="content-wrapper">
                     <!-- Events Feed View -->
                     <div id="events-view" class="view active">
-                        <div class="events-feed-header">
-                            <h2 class="glow-text">🌿 Events Feed</h2>
-                            <div class="feed-tabs">
-                                <button class="feed-tab active" onclick="filterEvents('upcoming')">🔮 Upcoming</button>
-                                <button class="feed-tab" onclick="filterEvents('trending')">🔥 Trending</button>
-                                <button class="feed-tab" onclick="filterEvents('past')">📚 Past</button>
+                        <div class="immersive-events-header">
+                            <h2 class="immersive-title">
+                                <span class="title-icon">🌿</span>
+                                <span class="title-text">Cannabis Events Feed</span>
+                                <span class="title-sparkle">✨</span>
+                            </h2>
+                            <div class="immersive-feed-tabs">
+                                <button class="immersive-tab active" data-filter="upcoming">
+                                    <div class="tab-icon">🔮</div>
+                                    <div class="tab-label">Upcoming</div>
+                                </button>
+                                <button class="immersive-tab" data-filter="trending">
+                                    <div class="tab-icon">🔥</div>
+                                    <div class="tab-label">Trending</div>
+                                </button>
+                                <button class="immersive-tab" data-filter="past">
+                                    <div class="tab-icon">📚</div>
+                                    <div class="tab-label">Past</div>
+                                </button>
                             </div>
                         </div>
 
-                        <!-- Top Community Members -->
-                        <div class="top-members">
-                            <h3 style="color: var(--cannabis-gold); text-align: center; margin-bottom: 1rem;">
-                                🏆 Top Community Members
-                            </h3>
-                            <div class="members-grid">
-                                <div class="member-card gold">
-                                    <div class="member-avatar">🌿</div>
-                                    <div class="member-name">Sarah Green</div>
-                                    <div class="member-points">420 points</div>
-                                    <div class="member-level">Gold Leaf</div>
-                                </div>
-                                <div class="member-card silver">
-                                    <div class="member-avatar">🧘‍♀️</div>
-                                    <div class="member-name">Luna Wellness</div>
-                                    <div class="member-points">350 points</div>
-                                    <div class="member-level">Gold Leaf</div>
-                                </div>
-                                <div class="member-card bronze">
-                                    <div class="member-avatar">🔥</div>
-                                    <div class="member-name">Mike Blazer</div>
-                                    <div class="member-points">280 points</div>
-                                    <div class="member-level">Silver Leaf</div>
-                                </div>
+                        <!-- Community Stats -->
+                        <div class="community-stats">
+                            <div class="stat-card">
+                                <div class="stat-icon">🎉</div>
+                                <div class="stat-number">42</div>
+                                <div class="stat-label">Events This Month</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">👥</div>
+                                <div class="stat-number">1,337</div>
+                                <div class="stat-label">Community Members</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">🌿</div>
+                                <div class="stat-number">420</div>
+                                <div class="stat-label">Cannabis Events</div>
                             </div>
                         </div>
 
-                        <!-- Events List -->
-                        <div id="events-list">
-                            <!-- Events will be loaded here -->
+                        <!-- Immersive Events List -->
+                        <div id="immersive-events-list" class="immersive-events-container">
+                            <!-- Events will be loaded here with enhanced styling -->
                         </div>
                     </div>
 
@@ -216,6 +240,14 @@
                 </div>
             </main>
 
+            <!-- Celebration Elements -->
+            <div class="celebration-overlay">
+                <div class="hashtag-floating">#420Events</div>
+                <div class="hashtag-floating">#CannabisLife</div>
+                <div class="hashtag-floating">#GreenCommunity</div>
+                <div class="celebration-text">Join the Party! 🎉</div>
+            </div>
+
             <!-- Profile Drawer -->
             <div id="profile-drawer" class="profile-drawer-overlay" style="display: none;">
                 <div class="profile-drawer">
@@ -228,6 +260,7 @@
 
     <!-- Load data and initialize app -->
     <script src="src/immersive-overlays.js"></script>
+    <script src="src/immersive-interactions.js"></script>
     <script src="src/cannabis-app.js"></script>
 </body>
 </html>
