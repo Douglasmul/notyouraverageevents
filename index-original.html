@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Not Your Average Events</title>
+    <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+    <h1>Welcome to Not Your Average Events</h1>
+    
+    <!-- Navigation -->
+    <nav id="navigation">
+        <button id="view-events-btn" class="nav-btn active">View Events</button>
+        <button id="add-event-btn" class="nav-btn">Add Event</button>
+        <button id="view-venues-btn" class="nav-btn">Browse Venues</button>
+    </nav>
+    
+    <!-- Events View -->
+    <div id="events-view" class="view active">
+        <div id="filter-container"></div>
+        <div id="calendar"></div>
+    </div>
+    
+    <!-- Add Event View -->
+    <div id="add-event-view" class="view">
+        <div class="form-container">
+            <h2>Add New Event</h2>
+            <form id="event-form">
+                <div class="form-group">
+                    <label for="event-title">Event Title*</label>
+                    <input type="text" id="event-title" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="event-date">Date*</label>
+                    <input type="date" id="event-date" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="event-category">Category*</label>
+                    <select id="event-category" required>
+                        <option value="">Select Category</option>
+                        <option value="community">Community</option>
+                        <option value="workshop">Workshop</option>
+                        <option value="education">Education</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="wellness">Wellness</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="event-description">Description*</label>
+                    <textarea id="event-description" rows="3" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="venue-select">Venue*</label>
+                    <select id="venue-select" required>
+                        <option value="">Select Venue</option>
+                        <!-- Will be populated by JavaScript -->
+                    </select>
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <label>
+                        <input type="checkbox" id="cannabis-friendly-event">
+                        This is a cannabis-friendly event
+                    </label>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" id="cancel-event-btn">Cancel</button>
+                    <button type="submit">Add Event</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Venues View -->
+    <div id="venues-view" class="view">
+        <div class="venue-header">
+            <h2>Browse Venues</h2>
+            <button id="add-venue-btn" class="action-btn">Add New Venue</button>
+        </div>
+        <div id="venue-filters">
+            <label for="venue-filter">Filter Venues:</label>
+            <select id="venue-filter">
+                <option value="all">All Venues</option>
+                <option value="cannabis-friendly">Cannabis Friendly Only</option>
+                <option value="regular">Regular Venues Only</option>
+            </select>
+        </div>
+        <div id="venues-list"></div>
+    </div>
+    
+    <script src="src/app.js"></script>
+</body>
+</html>

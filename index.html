@@ -3,97 +3,229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Not Your Average Events</title>
+    <title>Not Your Average Events - 420 Friendly Social Network</title>
     <link rel="stylesheet" href="src/styles.css">
+    <link rel="stylesheet" href="src/cannabis-theme.css">
 </head>
 <body>
-    <h1>Welcome to Not Your Average Events</h1>
-    
-    <!-- Navigation -->
-    <nav id="navigation">
-        <button id="view-events-btn" class="nav-btn active">View Events</button>
-        <button id="add-event-btn" class="nav-btn">Add Event</button>
-        <button id="view-venues-btn" class="nav-btn">Browse Venues</button>
-    </nav>
-    
-    <!-- Events View -->
-    <div id="events-view" class="view active">
-        <div id="filter-container"></div>
-        <div id="calendar"></div>
-    </div>
-    
-    <!-- Add Event View -->
-    <div id="add-event-view" class="view">
-        <div class="form-container">
-            <h2>Add New Event</h2>
-            <form id="event-form">
-                <div class="form-group">
-                    <label for="event-title">Event Title*</label>
-                    <input type="text" id="event-title" required>
+    <!-- App Root -->
+    <div id="app-root">
+        <div class="app-container">
+            <!-- Header -->
+            <header class="app-header">
+                <h1 class="app-title glow-text">
+                    <span class="cannabis-icon">🌿</span> Not Your Average Events
+                </h1>
+                <p class="app-subtitle">420-Friendly Social Network & Events Platform</p>
+            </header>
+
+            <!-- Landing Modal -->
+            <div id="landing-modal" class="cannabis-modal">
+                <div class="cannabis-modal-content">
+                    <button class="close-btn" onclick="closeLandingModal()">×</button>
+                    
+                    <!-- Featured Image -->
+                    <div class="featured-image-container">
+                        <img src="assets/event-flyer.svg" alt="Featured Event Flyer" class="featured-image" 
+                             onerror="this.style.display='none'">
+                    </div>
+
+                    <!-- Event Title -->
+                    <h2 class="glow-text" style="text-align: center; color: white; margin-bottom: 1rem;">
+                        <span class="cannabis-icon">🎉</span> Next Cannabis-Friendly Event
+                    </h2>
+
+                    <h3 id="next-event-title" style="text-align: center; color: var(--cannabis-green); margin-bottom: 1.5rem; font-size: 1.5rem;">
+                        Cannabis Education & Wellness Fair
+                    </h3>
+
+                    <!-- Countdown Timer -->
+                    <div class="countdown-timer">
+                        <div style="margin-bottom: 0.5rem;">🕒 Event Starts In:</div>
+                        <div class="countdown-numbers" id="countdown-display">
+                            <div class="countdown-unit">
+                                <div class="countdown-value" id="days">5</div>
+                                <div class="countdown-label">Days</div>
+                            </div>
+                            <div class="countdown-unit">
+                                <div class="countdown-value" id="hours">14</div>
+                                <div class="countdown-label">Hours</div>
+                            </div>
+                            <div class="countdown-unit">
+                                <div class="countdown-value" id="minutes">25</div>
+                                <div class="countdown-label">Minutes</div>
+                            </div>
+                            <div class="countdown-unit">
+                                <div class="countdown-value" id="seconds">30</div>
+                                <div class="countdown-label">Seconds</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Event Details -->
+                    <div class="event-details-box">
+                        <div class="detail-row">
+                            <strong style="color: var(--cannabis-green);">📅 Date: </strong>
+                            <span id="next-event-date">September 25, 2025</span>
+                        </div>
+                        <div class="detail-row">
+                            <strong style="color: var(--cannabis-green);">📍 Venue: </strong>
+                            <span id="next-event-venue">Green Leaf Dispensary & Lounge</span>
+                        </div>
+                        <div class="detail-row">
+                            <strong style="color: var(--cannabis-green);">📝 Description: </strong>
+                            <span id="next-event-description">Learn about cannabis wellness, meet local dispensaries, and enjoy educational talks from industry experts.</span>
+                        </div>
+                        <div class="cannabis-info">
+                            <span class="cannabis-indicator">🌿 Cannabis Friendly Event</span>
+                            <p>This event welcomes cannabis consumption in accordance with local laws.</p>
+                        </div>
+                    </div>
+
+                    <!-- Call-to-Action Buttons -->
+                    <div class="modal-actions">
+                        <button class="cannabis-btn" onclick="handleRSVP()">
+                            🎉 Join the Party!
+                        </button>
+                        <button class="cannabis-btn" onclick="closeLandingModal()" 
+                                style="background: linear-gradient(45deg, var(--cannabis-purple), #673ab7); border: 2px solid var(--cannabis-orange);">
+                            🌿 Explore More Events
+                        </button>
+                    </div>
+
+                    <!-- Social Share Buttons -->
+                    <div class="social-share">
+                        <h4 style="width: 100%; text-align: center; color: var(--cannabis-green); margin-bottom: 1rem;">
+                            🔗 Share with Friends
+                        </h4>
+                        <button class="social-btn facebook" onclick="shareEvent('facebook')">📘 Facebook</button>
+                        <button class="social-btn twitter" onclick="shareEvent('twitter')">🐦 Twitter</button>
+                        <button class="social-btn instagram" onclick="shareEvent('instagram')">📸 Instagram</button>
+                        <button class="social-btn whatsapp" onclick="shareEvent('whatsapp')">💬 WhatsApp</button>
+                    </div>
+
+                    <!-- Cannabis leaf decorations -->
+                    <div class="modal-decoration left">🌿</div>
+                    <div class="modal-decoration right">🍃</div>
                 </div>
-                
-                <div class="form-group">
-                    <label for="event-date">Date*</label>
-                    <input type="date" id="event-date" required>
+            </div>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Navigation -->
+                <nav class="main-nav">
+                    <div class="profile-quick-view">
+                        <div class="user-avatar">🌿</div>
+                        <div class="user-info">
+                            <div class="user-name">Sarah Green</div>
+                            <div class="user-status">Gold Leaf • 420 points</div>
+                            <div class="user-badges">
+                                <span class="badge">Event Host</span>
+                                <span class="badge">Community Leader</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="nav-item active" onclick="showView('events')">
+                        🎉 Events Feed
+                    </button>
+                    <button class="nav-item" onclick="showView('community')">
+                        💬 Community Board
+                    </button>
+                    <button class="nav-item" onclick="showProfile()">
+                        👤 My Profile
+                    </button>
+                    <button class="nav-item" onclick="showView('add-event')">
+                        ➕ Create Event
+                    </button>
+                </nav>
+
+                <!-- Content Area -->
+                <div class="content-area">
+                    <!-- Events Feed View -->
+                    <div id="events-view" class="view active">
+                        <div class="events-feed-header">
+                            <h2 class="glow-text">🌿 Events Feed</h2>
+                            <div class="feed-tabs">
+                                <button class="feed-tab active" onclick="filterEvents('upcoming')">🔮 Upcoming</button>
+                                <button class="feed-tab" onclick="filterEvents('trending')">🔥 Trending</button>
+                                <button class="feed-tab" onclick="filterEvents('past')">📚 Past</button>
+                            </div>
+                        </div>
+
+                        <!-- Top Community Members -->
+                        <div class="top-members">
+                            <h3 style="color: var(--cannabis-gold); text-align: center; margin-bottom: 1rem;">
+                                🏆 Top Community Members
+                            </h3>
+                            <div class="members-grid">
+                                <div class="member-card gold">
+                                    <div class="member-avatar">🌿</div>
+                                    <div class="member-name">Sarah Green</div>
+                                    <div class="member-points">420 points</div>
+                                    <div class="member-level">Gold Leaf</div>
+                                </div>
+                                <div class="member-card silver">
+                                    <div class="member-avatar">🧘‍♀️</div>
+                                    <div class="member-name">Luna Wellness</div>
+                                    <div class="member-points">350 points</div>
+                                    <div class="member-level">Gold Leaf</div>
+                                </div>
+                                <div class="member-card bronze">
+                                    <div class="member-avatar">🔥</div>
+                                    <div class="member-name">Mike Blazer</div>
+                                    <div class="member-points">280 points</div>
+                                    <div class="member-level">Silver Leaf</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Events List -->
+                        <div id="events-list">
+                            <!-- Events will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Community Board View -->
+                    <div id="community-view" class="view">
+                        <div class="community-header">
+                            <h2 class="glow-text">🌿 420-Friendly Community Board</h2>
+                            <p>Connect, discuss, and plan with fellow cannabis enthusiasts</p>
+                        </div>
+
+                        <div class="community-tabs">
+                            <button class="community-tab active" onclick="showCommunityTab('discussions')">💬 Discussions</button>
+                            <button class="community-tab" onclick="showCommunityTab('polls')">📊 Polls</button>
+                            <button class="community-tab" onclick="showCommunityTab('qa')">❓ Q&A</button>
+                        </div>
+
+                        <div id="community-content">
+                            <!-- Community content will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Add Event View -->
+                    <div id="add-event-view" class="view">
+                        <div class="form-container">
+                            <h2>🌿 Create Cannabis-Friendly Event</h2>
+                            <p>Share your 420-friendly gathering with the community!</p>
+                            <!-- Original form content will go here -->
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="form-group">
-                    <label for="event-category">Category*</label>
-                    <select id="event-category" required>
-                        <option value="">Select Category</option>
-                        <option value="community">Community</option>
-                        <option value="workshop">Workshop</option>
-                        <option value="education">Education</option>
-                        <option value="entertainment">Entertainment</option>
-                        <option value="wellness">Wellness</option>
-                    </select>
+            </main>
+
+            <!-- Profile Drawer -->
+            <div id="profile-drawer" class="profile-drawer-overlay" style="display: none;">
+                <div class="profile-drawer">
+                    <button class="close-btn" onclick="closeProfile()">×</button>
+                    <!-- Profile content will go here -->
                 </div>
-                
-                <div class="form-group">
-                    <label for="event-description">Description*</label>
-                    <textarea id="event-description" rows="3" required></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="venue-select">Venue*</label>
-                    <select id="venue-select" required>
-                        <option value="">Select Venue</option>
-                        <!-- Will be populated by JavaScript -->
-                    </select>
-                </div>
-                
-                <div class="form-group checkbox-group">
-                    <label>
-                        <input type="checkbox" id="cannabis-friendly-event">
-                        This is a cannabis-friendly event
-                    </label>
-                </div>
-                
-                <div class="form-actions">
-                    <button type="button" id="cancel-event-btn">Cancel</button>
-                    <button type="submit">Add Event</button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
-    
-    <!-- Venues View -->
-    <div id="venues-view" class="view">
-        <div class="venue-header">
-            <h2>Browse Venues</h2>
-            <button id="add-venue-btn" class="action-btn">Add New Venue</button>
-        </div>
-        <div id="venue-filters">
-            <label for="venue-filter">Filter Venues:</label>
-            <select id="venue-filter">
-                <option value="all">All Venues</option>
-                <option value="cannabis-friendly">Cannabis Friendly Only</option>
-                <option value="regular">Regular Venues Only</option>
-            </select>
-        </div>
-        <div id="venues-list"></div>
-    </div>
-    
-    <script src="src/app.js"></script>
+
+    <!-- Load data and initialize app -->
+    <script src="src/cannabis-app.js"></script>
 </body>
 </html>

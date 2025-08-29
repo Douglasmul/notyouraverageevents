@@ -23,8 +23,8 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "live-server": "^1.2.2",
-    "http-server": "^14.1.1"
+    "http-server": "^14.1.1",
+    "live-server": "^1.2.2"
   },
   "engines": {
     "node": ">=14.0.0",
@@ -34,5 +34,10 @@
     "type": "git",
     "url": "https://github.com/Douglasmul/notyouraverageevents.git"
   },
-  "homepage": "."
+  "homepage": ".",
+  "dependencies": {
+    "@babel/standalone": "^7.28.3",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  }
 }
