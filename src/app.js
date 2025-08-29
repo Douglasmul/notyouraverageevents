@@ -25,6 +25,9 @@ async function loadData() {
         setupFilters();
         populateVenueSelect();
         displayVenues(allVenues);
+        
+        // Show latest event modal on app load
+        showLatestEventModal();
     } catch (err) {
         document.getElementById('calendar').innerHTML = "<p>Could not load data.</p>";
     }
@@ -240,6 +243,76 @@ function createModal() {
     `;
     document.body.appendChild(modal);
     return modal;
+}
+
+// Show latest event modal on app load
+function showLatestEventModal() {
+    if (!allEvents || allEvents.length === 0) {
+        return; // No events to show
+    }
+    
+    // Find the most recent event by sorting by date
+    const sortedEvents = [...allEvents].sort((a, b) => new Date(b.date) - new Date(a.date));
+    const latestEvent = sortedEvents[0];
+    
+    const modal = document.getElementById('event-modal') || createModal();
+    
+    const amenitiesHtml = latestEvent.venue?.amenities ? 
+        `<div class="venue-amenities">
+            <strong>Amenities:</strong> ${latestEvent.venue.amenities.join(', ')}
+        </div>` : '';
+    
+    const cannabisInfo = latestEvent.cannabisFriendly ? 
+        `<div class="cannabis-info">
+            <span class="cannabis-indicator">🌿 Cannabis Friendly Event</span>
+            <p>This event welcomes cannabis consumption in accordance with local laws.</p>
+        </div>` : '';
+    
+    modal.querySelector('.modal-content').innerHTML = `
+        <span class="close">&times;</span>
+        <h2>🎉 Latest Event</h2>
+        <h3>${latestEvent.title}</h3>
+        <div class="event-details">
+            <div class="detail-row">
+                <strong>Date:</strong> ${latestEvent.date}
+            </div>
+            <div class="detail-row">
+                <strong>Category:</strong> 
+                <span class="category-badge category-${latestEvent.category}">${latestEvent.category}</span>
+            </div>
+            ${latestEvent.venue ? `
+                <div class="detail-row">
+                    <strong>Venue:</strong> ${latestEvent.venue.name}
+                </div>
+                <div class="detail-row">
+                    <strong>Address:</strong> ${latestEvent.venue.address}
+                </div>
+                ${amenitiesHtml}
+            ` : ''}
+            ${cannabisInfo}
+            <div class="detail-row">
+                <strong>Description:</strong>
+                <p>${latestEvent.description}</p>
+            </div>
+        </div>
+    `;
+    
+    modal.style.display = 'block';
+    
+    // Close modal functionality
+    const closeBtn = modal.querySelector('.close');
+    closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+    
+    // Close modal when clicking outside
+    const outsideClickHandler = (event) => {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+            window.removeEventListener('click', outsideClickHandler);
+        }
+    };
+    window.addEventListener('click', outsideClickHandler);
 }
 
 // Setup event form
