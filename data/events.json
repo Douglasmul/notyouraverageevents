@@ -1,1 +1,65 @@
-[ { "title": "Community Meetup", "date": "2025-09-15", "description": "Join us for a friendly gathering and some fun activities." }, { "title": "Workshop: Build Your Website", "date": "2025-09-20", "description": "A hands-on workshop for beginners in web development." } ]
+[
+  {
+    "title": "Community Meetup",
+    "date": "2025-09-15",
+    "description": "Join us for a friendly gathering and some fun activities.",
+    "venue": {
+      "name": "Community Center Downtown",
+      "address": "123 Main St, Downtown",
+      "cannabisFriendly": false
+    },
+    "category": "community",
+    "cannabisFriendly": false
+  },
+  {
+    "title": "Workshop: Build Your Website",
+    "date": "2025-09-20",
+    "description": "A hands-on workshop for beginners in web development.",
+    "venue": {
+      "name": "Tech Hub Co-working",
+      "address": "456 Innovation Drive",
+      "cannabisFriendly": false
+    },
+    "category": "workshop",
+    "cannabisFriendly": false
+  },
+  {
+    "title": "Cannabis Education & Wellness Fair",
+    "date": "2025-09-25",
+    "description": "Learn about cannabis wellness, meet local dispensaries, and enjoy educational talks from industry experts.",
+    "venue": {
+      "name": "Green Leaf Dispensary & Lounge",
+      "address": "789 Cannabis Ave, Green District",
+      "cannabisFriendly": true,
+      "amenities": ["consumption area", "educational space", "parking"]
+    },
+    "category": "education",
+    "cannabisFriendly": true
+  },
+  {
+    "title": "420 Friendly Art & Music Night",
+    "date": "2025-09-28",
+    "description": "An evening of local art, live music, and cannabis-friendly socializing. Bring your own or enjoy what's available on-site.",
+    "venue": {
+      "name": "The Chill Spot Gallery",
+      "address": "321 Artistic Way, Arts Quarter",
+      "cannabisFriendly": true,
+      "amenities": ["smoking area", "art gallery", "live music stage", "food vendors"]
+    },
+    "category": "entertainment",
+    "cannabisFriendly": true
+  },
+  {
+    "title": "Meditation & Cannabis Mindfulness Session",
+    "date": "2025-10-02",
+    "description": "Join us for a guided meditation session in a cannabis-friendly environment. Focus on mindfulness and relaxation.",
+    "venue": {
+      "name": "Zen Cannabis Wellness Center",
+      "address": "555 Peaceful Path, Wellness District",
+      "cannabisFriendly": true,
+      "amenities": ["meditation room", "consumption lounge", "wellness products"]
+    },
+    "category": "wellness",
+    "cannabisFriendly": true
+  }
+]

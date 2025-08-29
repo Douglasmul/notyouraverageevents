@@ -1,0 +1,67 @@
+[
+  {
+    "id": "community-center-downtown",
+    "name": "Community Center Downtown",
+    "address": "123 Main St, Downtown",
+    "cannabisFriendly": false,
+    "amenities": ["parking", "accessible", "kitchen facilities"],
+    "description": "A welcoming community space for gatherings and events.",
+    "capacity": 150,
+    "contact": {
+      "phone": "(555) 123-4567",
+      "email": "events@communitycenter.org"
+    }
+  },
+  {
+    "id": "tech-hub-coworking",
+    "name": "Tech Hub Co-working",
+    "address": "456 Innovation Drive",
+    "cannabisFriendly": false,
+    "amenities": ["wifi", "projector", "whiteboards", "parking"],
+    "description": "Modern co-working space perfect for workshops and tech events.",
+    "capacity": 75,
+    "contact": {
+      "phone": "(555) 234-5678",
+      "email": "book@techhub.com"
+    }
+  },
+  {
+    "id": "green-leaf-dispensary",
+    "name": "Green Leaf Dispensary & Lounge",
+    "address": "789 Cannabis Ave, Green District",
+    "cannabisFriendly": true,
+    "amenities": ["consumption area", "educational space", "parking", "security"],
+    "description": "A licensed dispensary with event space for cannabis education and community events.",
+    "capacity": 100,
+    "contact": {
+      "phone": "(555) 345-6789",
+      "email": "events@greenleaf.com"
+    }
+  },
+  {
+    "id": "chill-spot-gallery",
+    "name": "The Chill Spot Gallery",
+    "address": "321 Artistic Way, Arts Quarter",
+    "cannabisFriendly": true,
+    "amenities": ["smoking area", "art gallery", "live music stage", "food vendors", "outdoor space"],
+    "description": "An artistic venue that welcomes cannabis enthusiasts for creative and social events.",
+    "capacity": 200,
+    "contact": {
+      "phone": "(555) 456-7890",
+      "email": "book@chillspot.art"
+    }
+  },
+  {
+    "id": "zen-cannabis-wellness",
+    "name": "Zen Cannabis Wellness Center",
+    "address": "555 Peaceful Path, Wellness District",
+    "cannabisFriendly": true,
+    "amenities": ["meditation room", "consumption lounge", "wellness products", "quiet zones"],
+    "description": "A serene wellness center specializing in cannabis-assisted meditation and mindfulness.",
+    "capacity": 50,
+    "contact": {
+      "phone": "(555) 567-8901",
+      "email": "info@zencannabiswellness.com"
+    }
+  }
+]

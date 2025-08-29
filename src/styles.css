@@ -1,1 +1,530 @@
-body { font-family: Arial, sans-serif; background-color: #181818; color: #f3f3f3; margin: 0; padding: 0; } h1 { text-align: center; margin-top: 2em; } #calendar { margin: 2em auto; padding: 1em; background: #222; border-radius: 10px; width: 90%; max-width: 600px; box-shadow: 0 0 10px #444; } .event { background: #2a2a2a; border-left: 4px solid #4caf50; margin: 1em 0; padding: 1em; border-radius: 5px; } .event-title { font-weight: bold; font-size: 1.2em; } .event-date { color: #aaa; font-size: 0.9em; }
+body { 
+    font-family: Arial, sans-serif; 
+    background-color: #181818; 
+    color: #f3f3f3; 
+    margin: 0; 
+    padding: 0; 
+} 
+
+h1 { 
+    text-align: center; 
+    margin-top: 2em; 
+}
+
+/* Navigation */
+#navigation {
+    display: flex;
+    justify-content: center;
+    margin: 2em auto;
+    max-width: 600px;
+    gap: 1em;
+}
+
+.nav-btn {
+    padding: 0.8em 1.5em;
+    border: 2px solid #444;
+    background: #333;
+    color: #f3f3f3;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1em;
+}
+
+.nav-btn:hover {
+    background: #444;
+    border-color: #666;
+}
+
+.nav-btn.active {
+    background: #4caf50;
+    border-color: #4caf50;
+    color: #fff;
+}
+
+/* Views */
+.view {
+    display: none;
+}
+
+.view.active {
+    display: block;
+}
+
+/* Filter Container */
+#filter-container {
+    margin: 2em auto;
+    padding: 1em;
+    background: #222;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 0 10px #444;
+    display: flex;
+    gap: 2em;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.filter-group label {
+    font-weight: bold;
+    color: #f3f3f3;
+}
+
+.filter-group select {
+    padding: 0.5em;
+    border-radius: 5px;
+    border: 1px solid #444;
+    background: #333;
+    color: #f3f3f3;
+    font-size: 1em;
+}
+
+.filter-group select:focus {
+    outline: none;
+    border-color: #4caf50;
+}
+
+/* Calendar */
+#calendar { 
+    margin: 2em auto; 
+    padding: 1em; 
+    background: #222; 
+    border-radius: 10px; 
+    width: 90%; 
+    max-width: 600px; 
+    box-shadow: 0 0 10px #444; 
+} 
+
+/* Event Cards */
+.event { 
+    background: #2a2a2a; 
+    border-left: 4px solid #4caf50; 
+    margin: 1em 0; 
+    padding: 1em; 
+    border-radius: 5px; 
+    cursor: pointer;
+    transition: background 0.3s ease;
+} 
+
+.event:hover {
+    background: #333;
+}
+
+.event.cannabis-friendly {
+    border-left-color: #8bc34a;
+    background: #2a3d2a;
+}
+
+.event.cannabis-friendly:hover {
+    background: #3a4d3a;
+}
+
+.event-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5em;
+    flex-wrap: wrap;
+    gap: 0.5em;
+}
+
+.event-title { 
+    font-weight: bold; 
+    font-size: 1.2em; 
+    flex: 1;
+    min-width: 200px;
+} 
+
+.event-date { 
+    color: #aaa; 
+    font-size: 0.9em; 
+    margin-bottom: 0.5em;
+}
+
+.event-venue {
+    color: #ccc;
+    font-size: 0.9em;
+    margin-bottom: 0.5em;
+}
+
+.event-desc {
+    margin-top: 0.5em;
+    line-height: 1.4;
+}
+
+/* Cannabis Indicator */
+.cannabis-indicator {
+    background: #8bc34a;
+    color: #fff;
+    padding: 0.2em 0.5em;
+    border-radius: 15px;
+    font-size: 0.8em;
+    white-space: nowrap;
+}
+
+/* Category Badges */
+.category-badge {
+    background: #666;
+    color: #fff;
+    padding: 0.2em 0.5em;
+    border-radius: 10px;
+    font-size: 0.8em;
+    text-transform: capitalize;
+    white-space: nowrap;
+}
+
+.category-community { background: #2196f3; }
+.category-workshop { background: #ff9800; }
+.category-education { background: #9c27b0; }
+.category-entertainment { background: #e91e63; }
+.category-wellness { background: #4caf50; }
+
+/* Form Styles */
+.form-container {
+    margin: 2em auto;
+    padding: 2em;
+    background: #222;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 0 10px #444;
+}
+
+.form-container h2 {
+    margin-top: 0;
+    color: #4caf50;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 1.5em;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+    color: #f3f3f3;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8em;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background: #333;
+    color: #f3f3f3;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #4caf50;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    margin-bottom: 0;
+    font-weight: normal;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1em;
+    justify-content: flex-end;
+    margin-top: 2em;
+}
+
+.form-actions button {
+    padding: 0.8em 1.5em;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.form-actions button[type="submit"] {
+    background: #4caf50;
+    color: #fff;
+}
+
+.form-actions button[type="submit"]:hover {
+    background: #45a049;
+}
+
+.form-actions button[type="button"] {
+    background: #666;
+    color: #fff;
+}
+
+.form-actions button[type="button"]:hover {
+    background: #777;
+}
+
+/* Venue Styles */
+.venue-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2em auto;
+    width: 90%;
+    max-width: 800px;
+}
+
+.venue-header h2 {
+    color: #4caf50;
+    margin: 0;
+}
+
+.action-btn {
+    padding: 0.8em 1.5em;
+    background: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s ease;
+}
+
+.action-btn:hover {
+    background: #45a049;
+}
+
+#venue-filters {
+    margin: 1em auto;
+    width: 90%;
+    max-width: 800px;
+    display: flex;
+    gap: 1em;
+    align-items: center;
+}
+
+#venue-filters label {
+    font-weight: bold;
+    color: #f3f3f3;
+}
+
+#venue-filters select {
+    padding: 0.5em;
+    border-radius: 5px;
+    border: 1px solid #444;
+    background: #333;
+    color: #f3f3f3;
+    font-size: 1em;
+}
+
+#venues-list {
+    margin: 2em auto;
+    width: 90%;
+    max-width: 800px;
+}
+
+.venue-card {
+    background: #2a2a2a;
+    border-left: 4px solid #4caf50;
+    margin: 1em 0;
+    padding: 1.5em;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.venue-card.cannabis-friendly {
+    border-left-color: #8bc34a;
+    background: #2a3d2a;
+}
+
+.venue-card:hover {
+    background: #333;
+}
+
+.venue-card.cannabis-friendly:hover {
+    background: #3a4d3a;
+}
+
+.venue-header h3 {
+    margin: 0 0 0.5em 0;
+    color: #f3f3f3;
+    font-size: 1.3em;
+}
+
+.venue-info {
+    display: grid;
+    gap: 0.8em;
+}
+
+.venue-address,
+.venue-capacity {
+    color: #ccc;
+    font-size: 0.9em;
+}
+
+.venue-amenities {
+    color: #ccc;
+    font-size: 0.9em;
+}
+
+.venue-description {
+    color: #f3f3f3;
+    line-height: 1.4;
+}
+
+.venue-contact {
+    color: #aaa;
+    font-size: 0.9em;
+    padding-top: 0.5em;
+    border-top: 1px solid #333;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.8);
+}
+
+.modal-content {
+    background-color: #222;
+    margin: 5% auto;
+    padding: 2em;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    color: #f3f3f3;
+}
+
+.close {
+    position: absolute;
+    right: 1em;
+    top: 0.5em;
+    color: #aaa;
+    font-size: 2em;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #fff;
+    text-decoration: none;
+}
+
+.event-details {
+    margin-top: 1em;
+}
+
+.detail-row {
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid #333;
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-row strong {
+    color: #8bc34a;
+    display: inline-block;
+    min-width: 100px;
+}
+
+.venue-amenities {
+    margin-top: 0.5em;
+    color: #ccc;
+}
+
+.cannabis-info {
+    background: #2a3d2a;
+    padding: 1em;
+    border-radius: 5px;
+    border-left: 4px solid #8bc34a;
+    margin: 1em 0;
+}
+
+.cannabis-info p {
+    margin: 0.5em 0 0 0;
+    color: #ccc;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #navigation {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .nav-btn {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    #filter-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .filter-group {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .event-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .venue-header {
+        flex-direction: column;
+        gap: 1em;
+        align-items: flex-start;
+    }
+    
+    #venue-filters {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5em;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .modal-content {
+        margin: 10% auto;
+        width: 95%;
+    }
+}
