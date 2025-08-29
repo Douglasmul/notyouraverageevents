@@ -65,6 +65,17 @@ async function loadData() {
         displayEvents(allEvents);
         updateNextEventInfo();
         loadCommunityContent();
+        
+        // Show welcome notification instead of modal
+        setTimeout(() => {
+            if (window.immersiveOverlay) {
+                window.immersiveOverlay.showNotification(
+                    '🌿 Welcome to Not Your Average Events! Click any event to explore! 🎉', 
+                    'success', 
+                    4000
+                );
+            }
+        }, 1000);
     } catch (err) {
         console.error('Failed to load app data:', err);
         // Fallback to sample data
@@ -334,7 +345,7 @@ function generateSampleComments(eventTitle) {
 // Enhanced Event Interaction Functions
 function handleEventRSVP(eventTitle) {
     const button = event.target;
-    const currentCount = parseInt(button.textContent.match(/\d+/)[0]);
+    const currentCount = parseInt(button.textContent.match(/\d+/)?.[0] || 0);
     
     // Add pulse animation
     button.style.animation = 'rsvpSuccess 0.6s ease-out';
@@ -344,6 +355,15 @@ function handleEventRSVP(eventTitle) {
     
     // Add floating success emoji
     createFloatingEmoji('🎉', button);
+    
+    // Show notification
+    if (window.immersiveOverlay) {
+        window.immersiveOverlay.showNotification(
+            `🎉 You're going to ${eventTitle}! See you there! 🌿`, 
+            'success', 
+            3000
+        );
+    }
     
     setTimeout(() => {
         button.innerHTML = `✅ Going (${currentCount + 1})`;

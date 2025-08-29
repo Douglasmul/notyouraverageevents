@@ -6,6 +6,7 @@
     <title>Not Your Average Events - 420 Friendly Social Network</title>
     <link rel="stylesheet" href="src/styles.css">
     <link rel="stylesheet" href="src/cannabis-theme.css">
+    <link rel="stylesheet" href="src/immersive-overlays.css">
 </head>
 <body>
     <!-- App Root -->
@@ -19,8 +20,8 @@
                 <p class="app-subtitle">420-Friendly Social Network & Events Platform</p>
             </header>
 
-            <!-- Landing Modal -->
-            <div id="landing-modal" class="cannabis-modal">
+            <!-- Landing Modal - Hidden by new overlay system -->
+            <div id="landing-modal" class="cannabis-modal" style="display: none;">
                 <div class="cannabis-modal-content">
                     <button class="close-btn" onclick="closeLandingModal()">×</button>
                     
@@ -226,6 +227,7 @@
     </div>
 
     <!-- Load data and initialize app -->
+    <script src="src/immersive-overlays.js"></script>
     <script src="src/cannabis-app.js"></script>
 </body>
 </html>
