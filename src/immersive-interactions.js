@@ -136,6 +136,12 @@ function handleEnhancedRSVP(eventTitle, button) {
     // Create celebration effects
     createFloatingEmoji('🎉', button);
     createConfettiBurst(button);
+    createCelebrationBurst(button);
+    
+    // Dispatch custom event for mascot reaction
+    document.dispatchEvent(new CustomEvent('rsvp-success', { 
+        detail: { eventTitle, button } 
+    }));
     
     // Show success notification
     showImmersiveNotification(`🎉 You're going to ${eventTitle}! See you there! 🌿`, 'success');
@@ -164,6 +170,11 @@ function handleEnhancedLike(eventTitle, button) {
         // Create heart burst effect
         createFloatingEmoji('💚', button);
         createHeartBurst(button);
+        
+        // Dispatch custom event for mascot reaction
+        document.dispatchEvent(new CustomEvent('like-success', { 
+            detail: { eventTitle, button } 
+        }));
         
         showImmersiveNotification(`💚 You liked ${eventTitle}!`, 'success');
     } else {
@@ -381,6 +392,8 @@ function filterImmersiveEvents(filter) {
 document.addEventListener('DOMContentLoaded', () => {
     initializeImmersiveNavigation();
     initializeImmersiveTabs();
+    initializeMascot();
+    initializeInteractiveHashtags();
     
     // Add dynamic background elements
     createDynamicLeaves();
@@ -388,6 +401,109 @@ document.addEventListener('DOMContentLoaded', () => {
     
     console.log('🌿 Immersive Cannabis Events Platform Initialized!');
 });
+
+// Cannabis Mascot Interactions
+function initializeMascot() {
+    const mascot = document.getElementById('cannabis-mascot');
+    const speechBubble = document.getElementById('mascot-speech');
+    
+    if (!mascot || !speechBubble) return;
+    
+    const messages = [
+        "Welcome to the party! 🎉",
+        "Ready to roll? 🌿",
+        "Let's get this event started! 🔥",
+        "Join the green community! 💚",
+        "420 friendly vibes! ✨",
+        "Spark up some fun! ⚡",
+        "Green times ahead! 🌱"
+    ];
+    
+    let messageIndex = 0;
+    
+    // Click to cycle through messages
+    mascot.addEventListener('click', () => {
+        messageIndex = (messageIndex + 1) % messages.length;
+        speechBubble.querySelector('.speech-text').textContent = messages[messageIndex];
+        
+        // Add celebration effect
+        createCelebrationBurst(mascot);
+        
+        // Make mascot wave and speak
+        mascot.classList.add('speaking');
+        setTimeout(() => {
+            mascot.classList.remove('speaking');
+        }, 3000);
+        
+        // Add sparkle effect
+        createSparkleEffect(mascot);
+    });
+    
+    // React to RSVP events
+    document.addEventListener('rsvp-success', (e) => {
+        const celebrationMessages = [
+            "Awesome! See you there! 🎊",
+            "Party time! 🎉",
+            "You're in! Let's celebrate! 🌿",
+            "Green light for fun! 💚"
+        ];
+        
+        speechBubble.querySelector('.speech-text').textContent = 
+            celebrationMessages[Math.floor(Math.random() * celebrationMessages.length)];
+        
+        mascot.classList.add('speaking');
+        setTimeout(() => {
+            mascot.classList.remove('speaking');
+        }, 3000);
+        
+        // Add multiple celebration effects
+        createCelebrationBurst(mascot);
+        createConfettiBurst(mascot);
+    });
+    
+    // React to like events
+    document.addEventListener('like-success', (e) => {
+        speechBubble.querySelector('.speech-text').textContent = "Spreading the love! 💚";
+        createHeartBurst(mascot);
+    });
+    
+    // Auto-rotate messages every 10 seconds
+    setInterval(() => {
+        if (!mascot.classList.contains('speaking')) {
+            messageIndex = (messageIndex + 1) % messages.length;
+            speechBubble.querySelector('.speech-text').textContent = messages[messageIndex];
+        }
+    }, 10000);
+}
+
+// Initialize interactive hashtags
+function initializeInteractiveHashtags() {
+    const staticHashtags = document.querySelectorAll('.interactive-hashtag');
+    
+    staticHashtags.forEach(hashtag => {
+        hashtag.addEventListener('click', () => {
+            const filter = hashtag.dataset.filter;
+            filterEventsByHashtag(filter);
+            createCelebrationBurst(hashtag);
+            hashtag.style.animation = 'hashtagClick 0.5s ease-out';
+            
+            setTimeout(() => {
+                hashtag.style.animation = '';
+            }, 500);
+        });
+        
+        hashtag.addEventListener('mouseenter', () => {
+            hashtag.style.cursor = 'pointer';
+            hashtag.style.transform = 'scale(1.2)';
+            hashtag.style.textShadow = '0 0 20px var(--cannabis-green)';
+        });
+        
+        hashtag.addEventListener('mouseleave', () => {
+            hashtag.style.transform = 'scale(1)';
+            hashtag.style.textShadow = 'none';
+        });
+    });
+}
 
 // Dynamic Background Elements
 function createDynamicLeaves() {
@@ -414,12 +530,21 @@ function createDynamicLeaves() {
 }
 
 function createFloatingHashtags() {
-    const hashtags = ['#420Events', '#CannabisLife', '#GreenCommunity', '#WeedLife', '#420Friendly', '#CannabisCulture'];
+    const hashtags = [
+        { text: '#420Events', filter: '420events' },
+        { text: '#CannabisLife', filter: 'cannabis' },
+        { text: '#GreenCommunity', filter: 'community' },
+        { text: '#WeedLife', filter: 'cannabis' },
+        { text: '#420Friendly', filter: '420events' },
+        { text: '#CannabisCulture', filter: 'cannabis' }
+    ];
     
     setInterval(() => {
+        const randomHashtag = hashtags[Math.floor(Math.random() * hashtags.length)];
         const hashtag = document.createElement('div');
-        hashtag.className = 'floating-hashtag';
-        hashtag.textContent = hashtags[Math.floor(Math.random() * hashtags.length)];
+        hashtag.className = 'floating-hashtag interactive-hashtag';
+        hashtag.textContent = randomHashtag.text;
+        hashtag.dataset.filter = randomHashtag.filter;
         hashtag.style.cssText = `
             position: fixed;
             color: var(--cannabis-green);
@@ -430,13 +555,51 @@ function createFloatingHashtags() {
             animation: hashtagRise ${8 + Math.random() * 4}s linear forwards;
             opacity: 0.3;
             z-index: 1;
-            pointer-events: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
         `;
+        
+        // Add click handler for filtering
+        hashtag.addEventListener('click', () => {
+            filterEventsByHashtag(randomHashtag.filter);
+            createCelebrationBurst(hashtag);
+            hashtag.style.animation = 'hashtagClick 0.5s ease-out';
+        });
+        
+        hashtag.addEventListener('mouseenter', () => {
+            hashtag.style.transform = 'scale(1.2)';
+            hashtag.style.opacity = '0.8';
+            hashtag.style.textShadow = '0 0 15px var(--cannabis-green)';
+        });
+        
+        hashtag.addEventListener('mouseleave', () => {
+            hashtag.style.transform = 'scale(1)';
+            hashtag.style.opacity = '0.3';
+            hashtag.style.textShadow = 'none';
+        });
         
         document.body.appendChild(hashtag);
         
         setTimeout(() => hashtag.remove(), 12000);
     }, 5000);
+}
+
+// Hashtag filtering function
+function filterEventsByHashtag(filter) {
+    showImmersiveNotification(`🏷️ Filtering events by ${filter}! 🌿`, 'info');
+    
+    // Add visual feedback to show filtering is active
+    const eventsContainer = document.getElementById('immersive-events-list');
+    if (eventsContainer) {
+        eventsContainer.style.animation = 'filterPulse 0.5s ease-out';
+        setTimeout(() => {
+            eventsContainer.style.animation = '';
+        }, 500);
+    }
+    
+    // Here you would implement actual filtering logic
+    // For now, we'll just show a notification
+    console.log(`Filtering events by: ${filter}`);
 }
 
 // CSS Animations (to be added to CSS file)
