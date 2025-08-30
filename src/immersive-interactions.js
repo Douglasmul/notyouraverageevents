@@ -136,6 +136,12 @@ function handleEnhancedRSVP(eventTitle, button) {
     // Create celebration effects
     createFloatingEmoji('🎉', button);
     createConfettiBurst(button);
+    createCelebrationBurst(button);
+    
+    // Dispatch custom event for mascot reaction
+    document.dispatchEvent(new CustomEvent('rsvp-success', { 
+        detail: { eventTitle, button } 
+    }));
     
     // Show success notification
     showImmersiveNotification(`🎉 You're going to ${eventTitle}! See you there! 🌿`, 'success');
@@ -164,6 +170,11 @@ function handleEnhancedLike(eventTitle, button) {
         // Create heart burst effect
         createFloatingEmoji('💚', button);
         createHeartBurst(button);
+        
+        // Dispatch custom event for mascot reaction
+        document.dispatchEvent(new CustomEvent('like-success', { 
+            detail: { eventTitle, button } 
+        }));
         
         showImmersiveNotification(`💚 You liked ${eventTitle}!`, 'success');
     } else {
@@ -311,9 +322,28 @@ function createSparkleEffect(element) {
 function showImmersiveNotification(message, type = 'success') {
     const notification = document.createElement('div');
     notification.className = `immersive-notification ${type}`;
+    
+    // Different icons and colors for different types
+    let icon, bgGradient;
+    switch (type) {
+        case 'trending':
+            icon = '🔥';
+            bgGradient = 'linear-gradient(45deg, var(--cannabis-orange), var(--cannabis-gold))';
+            break;
+        case 'info':
+            icon = '💡';
+            bgGradient = 'linear-gradient(45deg, var(--cannabis-purple), #673ab7)';
+            break;
+        case 'success':
+        default:
+            icon = '🌿';
+            bgGradient = 'linear-gradient(45deg, var(--cannabis-green), var(--cannabis-dark-green))';
+            break;
+    }
+    
     notification.innerHTML = `
         <div class="notification-content">
-            <div class="notification-icon">🌿</div>
+            <div class="notification-icon">${icon}</div>
             <div class="notification-message">${message}</div>
         </div>
     `;
@@ -323,15 +353,18 @@ function showImmersiveNotification(message, type = 'success') {
         top: -100px;
         left: 50%;
         transform: translateX(-50%);
-        background: linear-gradient(45deg, var(--cannabis-green), var(--cannabis-dark-green));
+        background: ${bgGradient};
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 255, 255, 0.2);
         color: white;
         padding: 1rem 2rem;
         border-radius: 25px;
-        box-shadow: 0 10px 30px rgba(139, 195, 74, 0.6);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(139, 195, 74, 0.4);
         z-index: 2000;
         animation: notificationSlide 3s ease-out forwards;
         max-width: 90vw;
         text-align: center;
+        font-weight: bold;
     `;
     
     document.body.appendChild(notification);
@@ -381,6 +414,9 @@ function filterImmersiveEvents(filter) {
 document.addEventListener('DOMContentLoaded', () => {
     initializeImmersiveNavigation();
     initializeImmersiveTabs();
+    initializeMascot();
+    initializeInteractiveHashtags();
+    initializeDynamicGreeting();
     
     // Add dynamic background elements
     createDynamicLeaves();
@@ -388,6 +424,170 @@ document.addEventListener('DOMContentLoaded', () => {
     
     console.log('🌿 Immersive Cannabis Events Platform Initialized!');
 });
+
+// Dynamic Greeting System
+function initializeDynamicGreeting() {
+    const greetingElement = document.getElementById('greeting-text');
+    const subtitleElement = document.getElementById('greeting-subtitle');
+    const greetingBanner = document.getElementById('dynamic-greeting');
+    
+    if (!greetingElement || !subtitleElement) return;
+    
+    const hour = new Date().getHours();
+    const userName = "Sarah"; // This would come from user data
+    
+    let greeting, subtitle;
+    
+    if (hour >= 4 && hour < 12) {
+        greeting = `Good morning, ${userName}! ☀️🌿`;
+        subtitle = "Rise and shine with some green vibes!";
+    } else if (hour >= 12 && hour < 17) {
+        greeting = `Good afternoon, ${userName}! 🌤️🌿`;
+        subtitle = "Perfect time for a cannabis break!";
+    } else if (hour >= 17 && hour < 21) {
+        greeting = `Good evening, ${userName}! 🌅🌿`;
+        subtitle = "Ready for some cannabis-friendly fun?";
+    } else {
+        greeting = `Good night, ${userName}! 🌙🌿`;
+        subtitle = "Late night session? We've got events!";
+    }
+    
+    // Special 4:20 greeting
+    const minutes = new Date().getMinutes();
+    if ((hour === 4 || hour === 16) && minutes === 20) {
+        greeting = `It's 4:20, ${userName}! 🌿✨`;
+        subtitle = "Perfect timing for the cannabis community!";
+    }
+    
+    greetingElement.textContent = greeting;
+    subtitleElement.textContent = subtitle;
+    
+    // Auto-hide greeting after 5 seconds
+    setTimeout(() => {
+        greetingBanner.style.animation = 'greetingSlideOut 0.8s ease-in forwards';
+    }, 5000);
+    
+    // Show trending events notification
+    setTimeout(() => {
+        showTrendingEventsNotification();
+    }, 7000);
+}
+
+// Trending Events Notification
+function showTrendingEventsNotification() {
+    const trendingEvents = [
+        "🔥 Cannabis Art Gallery is trending!",
+        "🌟 420 Meditation Session gaining popularity!",
+        "💚 Green Community Meetup is hot right now!",
+        "✨ Cannabis Cooking Class is getting buzz!"
+    ];
+    
+    const randomEvent = trendingEvents[Math.floor(Math.random() * trendingEvents.length)];
+    showImmersiveNotification(randomEvent, 'trending');
+}
+
+// Cannabis Mascot Interactions
+function initializeMascot() {
+    const mascot = document.getElementById('cannabis-mascot');
+    const speechBubble = document.getElementById('mascot-speech');
+    
+    if (!mascot || !speechBubble) return;
+    
+    const messages = [
+        "Welcome to the party! 🎉",
+        "Ready to roll? 🌿",
+        "Let's get this event started! 🔥",
+        "Join the green community! 💚",
+        "420 friendly vibes! ✨",
+        "Spark up some fun! ⚡",
+        "Green times ahead! 🌱"
+    ];
+    
+    let messageIndex = 0;
+    
+    // Click to cycle through messages
+    mascot.addEventListener('click', () => {
+        messageIndex = (messageIndex + 1) % messages.length;
+        speechBubble.querySelector('.speech-text').textContent = messages[messageIndex];
+        
+        // Add celebration effect
+        createCelebrationBurst(mascot);
+        
+        // Make mascot wave and speak
+        mascot.classList.add('speaking');
+        setTimeout(() => {
+            mascot.classList.remove('speaking');
+        }, 3000);
+        
+        // Add sparkle effect
+        createSparkleEffect(mascot);
+    });
+    
+    // React to RSVP events
+    document.addEventListener('rsvp-success', (e) => {
+        const celebrationMessages = [
+            "Awesome! See you there! 🎊",
+            "Party time! 🎉",
+            "You're in! Let's celebrate! 🌿",
+            "Green light for fun! 💚"
+        ];
+        
+        speechBubble.querySelector('.speech-text').textContent = 
+            celebrationMessages[Math.floor(Math.random() * celebrationMessages.length)];
+        
+        mascot.classList.add('speaking');
+        setTimeout(() => {
+            mascot.classList.remove('speaking');
+        }, 3000);
+        
+        // Add multiple celebration effects
+        createCelebrationBurst(mascot);
+        createConfettiBurst(mascot);
+    });
+    
+    // React to like events
+    document.addEventListener('like-success', (e) => {
+        speechBubble.querySelector('.speech-text').textContent = "Spreading the love! 💚";
+        createHeartBurst(mascot);
+    });
+    
+    // Auto-rotate messages every 10 seconds
+    setInterval(() => {
+        if (!mascot.classList.contains('speaking')) {
+            messageIndex = (messageIndex + 1) % messages.length;
+            speechBubble.querySelector('.speech-text').textContent = messages[messageIndex];
+        }
+    }, 10000);
+}
+
+// Initialize interactive hashtags
+function initializeInteractiveHashtags() {
+    const staticHashtags = document.querySelectorAll('.interactive-hashtag');
+    
+    staticHashtags.forEach(hashtag => {
+        hashtag.addEventListener('click', () => {
+            const filter = hashtag.dataset.filter;
+            filterEventsByHashtag(filter);
+            createCelebrationBurst(hashtag);
+            hashtag.style.animation = 'hashtagClick 0.5s ease-out';
+            
+            setTimeout(() => {
+                hashtag.style.animation = '';
+            }, 500);
+        });
+        
+        hashtag.addEventListener('mouseenter', () => {
+            hashtag.style.cursor = 'pointer';
+            hashtag.style.transform = 'scale(1.2)';
+            hashtag.style.textShadow = '0 0 20px var(--cannabis-green)';
+        });
+        
+        hashtag.addEventListener('mouseleave', () => {
+            hashtag.style.transform = 'scale(1)';
+            hashtag.style.textShadow = 'none';
+        });
+    });
+}
 
 // Dynamic Background Elements
 function createDynamicLeaves() {
@@ -414,12 +614,21 @@ function createDynamicLeaves() {
 }
 
 function createFloatingHashtags() {
-    const hashtags = ['#420Events', '#CannabisLife', '#GreenCommunity', '#WeedLife', '#420Friendly', '#CannabisCulture'];
+    const hashtags = [
+        { text: '#420Events', filter: '420events' },
+        { text: '#CannabisLife', filter: 'cannabis' },
+        { text: '#GreenCommunity', filter: 'community' },
+        { text: '#WeedLife', filter: 'cannabis' },
+        { text: '#420Friendly', filter: '420events' },
+        { text: '#CannabisCulture', filter: 'cannabis' }
+    ];
     
     setInterval(() => {
+        const randomHashtag = hashtags[Math.floor(Math.random() * hashtags.length)];
         const hashtag = document.createElement('div');
-        hashtag.className = 'floating-hashtag';
-        hashtag.textContent = hashtags[Math.floor(Math.random() * hashtags.length)];
+        hashtag.className = 'floating-hashtag interactive-hashtag';
+        hashtag.textContent = randomHashtag.text;
+        hashtag.dataset.filter = randomHashtag.filter;
         hashtag.style.cssText = `
             position: fixed;
             color: var(--cannabis-green);
@@ -430,13 +639,51 @@ function createFloatingHashtags() {
             animation: hashtagRise ${8 + Math.random() * 4}s linear forwards;
             opacity: 0.3;
             z-index: 1;
-            pointer-events: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
         `;
+        
+        // Add click handler for filtering
+        hashtag.addEventListener('click', () => {
+            filterEventsByHashtag(randomHashtag.filter);
+            createCelebrationBurst(hashtag);
+            hashtag.style.animation = 'hashtagClick 0.5s ease-out';
+        });
+        
+        hashtag.addEventListener('mouseenter', () => {
+            hashtag.style.transform = 'scale(1.2)';
+            hashtag.style.opacity = '0.8';
+            hashtag.style.textShadow = '0 0 15px var(--cannabis-green)';
+        });
+        
+        hashtag.addEventListener('mouseleave', () => {
+            hashtag.style.transform = 'scale(1)';
+            hashtag.style.opacity = '0.3';
+            hashtag.style.textShadow = 'none';
+        });
         
         document.body.appendChild(hashtag);
         
         setTimeout(() => hashtag.remove(), 12000);
     }, 5000);
+}
+
+// Hashtag filtering function
+function filterEventsByHashtag(filter) {
+    showImmersiveNotification(`🏷️ Filtering events by ${filter}! 🌿`, 'info');
+    
+    // Add visual feedback to show filtering is active
+    const eventsContainer = document.getElementById('immersive-events-list');
+    if (eventsContainer) {
+        eventsContainer.style.animation = 'filterPulse 0.5s ease-out';
+        setTimeout(() => {
+            eventsContainer.style.animation = '';
+        }, 500);
+    }
+    
+    // Here you would implement actual filtering logic
+    // For now, we'll just show a notification
+    console.log(`Filtering events by: ${filter}`);
 }
 
 // CSS Animations (to be added to CSS file)
